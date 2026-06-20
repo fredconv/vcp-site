@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Hero } from "@/components/Hero";
 import { getContent, toRuntimeConfig } from "@/lib/content";
+import { pageHeroImage } from "@/lib/image-url";
 import { t } from "@/lib/props";
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -24,6 +25,7 @@ export default async function InscriptionsPage() {
         title={t(runtime, "inscriptions_hero_titre")}
         highlight={t(runtime, "inscriptions_hero_highlight")}
         subtitle={t(runtime, "inscriptions_hero_sous_titre")}
+        imageUrl={pageHeroImage(runtime.ui, "inscriptions")}
         cta={{
           label: t(runtime, "cta_formulaire"),
           href: links.inscription,

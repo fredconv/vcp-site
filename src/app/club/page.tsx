@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Hero } from "@/components/Hero";
 import { getContent, getPageContent, toRuntimeConfig } from "@/lib/content";
+import { pageHeroImage } from "@/lib/image-url";
 import { splitParagraphs, t } from "@/lib/props";
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -26,6 +27,7 @@ export default async function ClubPage() {
         title={t(runtime, "club_hero_titre")}
         highlight={t(runtime, "club_hero_highlight")}
         subtitle={t(runtime, "club_hero_sous_titre")}
+        imageUrl={pageHeroImage(runtime.ui, "club")}
       />
 
       <section className="py-16 sm:py-20">

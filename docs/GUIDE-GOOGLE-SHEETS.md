@@ -88,6 +88,14 @@ Mettez `TRUE` pour afficher une ligne, `FALSE` pour la masquer sans la supprimer
 | lien_journee_familles | https://spond.com/... | Activités |
 | equipes_intro | Texte d'introduction... | Pages **Équipes** et **Inscriptions** |
 | sheet_fiches_activites | ID du Google Sheet « Fiches activités » | Fiches détaillées `/activites/[slug]` — voir `docs/FICHES-ACTIVITES.md` |
+| home_hero_image | *(vide ou lien image)* | **Accueil** — bannière photo (sinon hero classique avec logo) |
+| club_hero_image | *(vide ou lien image)* | **Club** — bannière photo du hero |
+| equipes_hero_image | | **Équipes** |
+| activites_hero_image | | **Activités** |
+| inscriptions_hero_image | | **Inscriptions** |
+| contact_hero_image | | **Contact** |
+
+> **Bannières photo** : laissez la cellule vide pour le bandeau texte habituel. Collez un lien d'image pour afficher une bannière photo à la place. Voir [Images hero](HERO-IMAGES.md).
 
 ---
 

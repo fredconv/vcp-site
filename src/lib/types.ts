@@ -53,6 +53,7 @@ export type ActivityDetail = {
   slug: string;
   title: string;
   content: string;
+  heroImage?: string;
 };
 
 export type SponsorItem = {

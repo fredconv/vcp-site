@@ -8,6 +8,12 @@ hero_eyebrow;Brabant wallon · Depuis {founded}
 hero_ligne1;Volley
 hero_ligne2;Club
 hero_highlight;Perwez
+home_hero_image;
+club_hero_image;
+equipes_hero_image;
+activites_hero_image;
+inscriptions_hero_image;
+contact_hero_image;
 footer_blurb;Club de volley à Perwez depuis {founded}. Dynamique, familial et ambitieux — de {age_range}.
 footer_rejoindre_texte;Envie de jouer ? Inscrivez-vous en ligne ou contactez le club.
 footer_copyright;Tous droits réservés.

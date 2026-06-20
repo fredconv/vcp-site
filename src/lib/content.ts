@@ -2,6 +2,7 @@ import { cache } from "react";
 import { defaultContent } from "./defaults";
 import { NAV_ROUTES, buildUi } from "./ui-defaults";
 import { mapActivityFromRow } from "./activity-dates";
+import { resolveImageUrl } from "./image-url";
 import {
   ACTIVITY_FICHES_TAB,
   fetchAllSheetTabs,
@@ -24,6 +25,10 @@ function parseActivityDetails(
       slug: (row.slug ?? slugify(row.titre ?? "")).trim().toLowerCase(),
       title: row.titre ?? row.title ?? "",
       content: row.contenu ?? row.content ?? "",
+      heroImage:
+        resolveImageUrl(
+          row.hero_image ?? row.image_hero ?? row.image ?? ""
+        ) ?? undefined,
     }))
     .filter((item) => item.slug && item.content);
 }

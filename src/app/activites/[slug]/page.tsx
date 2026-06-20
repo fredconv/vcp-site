@@ -50,6 +50,7 @@ export default async function ActiviteDetailPage({ params }: PageProps) {
         runtime={runtime}
         title={detail.title}
         subtitle={activity.date}
+        imageUrl={detail.heroImage}
       />
 
       <section className="py-16 sm:py-20">

@@ -3,6 +3,7 @@ import Link from "next/link";
 import { ContactForm } from "@/components/ContactForm";
 import { Hero } from "@/components/Hero";
 import { getContent, toRuntimeConfig } from "@/lib/content";
+import { pageHeroImage } from "@/lib/image-url";
 import { t } from "@/lib/props";
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -26,6 +27,7 @@ export default async function ContactPage() {
         title={t(runtime, "contact_hero_titre")}
         highlight={t(runtime, "contact_hero_highlight")}
         subtitle={t(runtime, "contact_hero_sous_titre")}
+        imageUrl={pageHeroImage(runtime.ui, "contact")}
       />
 
       <section className="py-16 sm:py-20">

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Hero } from "@/components/Hero";
 import { getContent, toRuntimeConfig } from "@/lib/content";
+import { pageHeroImage } from "@/lib/image-url";
 import { t } from "@/lib/props";
 import type { SiteRuntimeConfig } from "@/lib/content";
 import type { TeamItem } from "@/lib/types";
@@ -79,6 +80,7 @@ export default async function EquipesPage() {
         title={t(runtime, "equipes_hero_titre")}
         highlight={t(runtime, "equipes_hero_highlight")}
         subtitle={t(runtime, "equipes_hero_sous_titre")}
+        imageUrl={pageHeroImage(runtime.ui, "equipes")}
       />
 
       <section className="py-16 sm:py-20">

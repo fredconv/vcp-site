@@ -3,6 +3,7 @@ import Link from "next/link";
 import { Hero } from "@/components/Hero";
 import { splitActivities } from "@/lib/activity-dates";
 import { getContent, toRuntimeConfig } from "@/lib/content";
+import { pageHeroImage } from "@/lib/image-url";
 import { t } from "@/lib/props";
 import type { SiteRuntimeConfig } from "@/lib/content";
 import type { ActivityItem } from "@/lib/types";
@@ -128,6 +129,7 @@ export default async function ActivitesPage() {
         title={t(runtime, "activites_hero_titre")}
         highlight={t(runtime, "activites_hero_highlight")}
         subtitle={t(runtime, "activites_hero_sous_titre")}
+        imageUrl={pageHeroImage(runtime.ui, "activites")}
       />
 
       <section className="py-16 sm:py-20">

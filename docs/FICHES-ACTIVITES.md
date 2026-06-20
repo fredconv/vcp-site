@@ -13,12 +13,13 @@ Fichier Google Sheets **séparé** du CMS principal, pour les textes détaillés
 
 ## Structure de l'onglet `fiches`
 
-| slug | titre | contenu | publie |
-|------|-------|---------|--------|
-| journee-familles | Journée des familles | Texte long… | TRUE |
+| slug | titre | contenu | hero_image | publie |
+|------|-------|---------|------------|--------|
+| journee-familles | Journée des familles | Texte long… | *(lien Drive optionnel)* | TRUE |
 
 - **slug** : identique à la colonne `slug` de l'onglet `activites` du Sheet principal
 - **contenu** : texte libre, paragraphes séparés par une **ligne vide**
+- **hero_image** : lien photo bannière (voir `docs/HERO-IMAGES.md`) — vide = hero texte
 - **publie** : `TRUE` pour afficher la page et le lien sur le site
 
 ## Lier au site
