@@ -2,6 +2,8 @@
 
 Ce guide explique comment modifier le contenu du site **sans coder**, via un Google Sheet partagé avec le comité.
 
+> **Version simplifiée pour le comité (non développeur) :** [GUIDE-COMITE-SHEETS.md](GUIDE-COMITE-SHEETS.md)
+
 ## Principe (niveau 1)
 
 1. Vous éditez le **Google Sheet**
