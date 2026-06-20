@@ -76,20 +76,21 @@ export const defaultContent: SiteContent = {
   teamsIntro:
     "Le Volley Club Perwez s'agrandit de saisons en saisons. Des nouvelles têtes arrivent, des plus anciennes reviennent. Nous sommes désormais un club gros de 11 équipes ! Nous aimerions redémarrer une section masculine — au moins en jeunes, voire en P4H selon les demandes. Nous recherchons également des personnes pour encadrer les équipes (entraîneur, arbitre, animateur).",
   teams: {
-    femmes: [
-      { name: "U11", division: "Jeunes", coach: "À confirmer", training: "À confirmer", description: "Initiation au volley pour les plus jeunes." },
-      { name: "U13", division: "Jeunes", coach: "À confirmer", training: "À confirmer", description: "Progression technique et esprit d'équipe." },
-      { name: "U15", division: "Jeunes", coach: "À confirmer", training: "À confirmer", description: "Préparation aux compétitions jeunes." },
-      { name: "U17", division: "Jeunes", coach: "À confirmer", training: "À confirmer", description: "Équipe jeunes en développement." },
-      { name: "U19", division: "Jeunes", coach: "À confirmer", training: "À confirmer", description: "Dernière étape avant le volley senior." },
-      { name: "Provinciale 4 Jeunes", division: "P4 Jeunes", coach: "À confirmer", training: "À confirmer", description: "Première expérience en compétition provinciale." },
-      { name: "Provinciale 4", division: "P4", coach: "À confirmer", training: "À confirmer", description: "Compétition provinciale dans une ambiance conviviale." },
-      { name: "Provinciale 3", division: "P3", coach: "À confirmer", training: "À confirmer", description: "Équipe ambitieuse en championnat provincial." },
-      { name: "Provinciale 2", division: "P2", coach: "À confirmer", training: "À confirmer", description: "Haut niveau provincial, esprit d'équipe fort." },
+    dames: [
+      { name: "U11", division: "Jeunes", category: "dames", coach: "À confirmer", training: "À confirmer", description: "Initiation au volley pour les plus jeunes." },
+      { name: "U13", division: "Jeunes", category: "dames", coach: "À confirmer", training: "À confirmer", description: "Progression technique et esprit d'équipe." },
+      { name: "U15", division: "Jeunes", category: "dames", coach: "À confirmer", training: "À confirmer", description: "Préparation aux compétitions jeunes." },
+      { name: "U17", division: "Jeunes", category: "dames", coach: "À confirmer", training: "À confirmer", description: "Équipe jeunes en développement." },
+      { name: "U19", division: "Jeunes", category: "dames", coach: "À confirmer", training: "À confirmer", description: "Dernière étape avant le volley senior." },
+      { name: "Provinciale 4 Jeunes", division: "P4 Jeunes", category: "dames", coach: "À confirmer", training: "À confirmer", description: "Première expérience en compétition provinciale." },
+      { name: "Provinciale 4", division: "P4", category: "dames", coach: "À confirmer", training: "À confirmer", description: "Compétition provinciale dans une ambiance conviviale." },
+      { name: "Provinciale 3", division: "P3", category: "dames", coach: "À confirmer", training: "À confirmer", description: "Équipe ambitieuse en championnat provincial." },
+      { name: "Provinciale 2", division: "P2", category: "dames", coach: "À confirmer", training: "À confirmer", description: "Haut niveau provincial, esprit d'équipe fort." },
     ],
+    messieurs: [],
     mixtes: [
-      { name: "Loisirs 3", division: "Loisir", coach: "À confirmer", training: "À confirmer", description: "Volley loisir accessible à tous les niveaux." },
-      { name: "Loisirs 5", division: "Loisir", coach: "À confirmer", training: "À confirmer", description: "Formule loisir conviviale, l'esprit du jeu avant tout." },
+      { name: "Loisirs 3", division: "Loisir", category: "mixte", coach: "À confirmer", training: "À confirmer", description: "Volley loisir accessible à tous les niveaux." },
+      { name: "Loisirs 5", division: "Loisir", category: "mixte", coach: "À confirmer", training: "À confirmer", description: "Formule loisir conviviale, l'esprit du jeu avant tout." },
     ],
   },
   activities: [

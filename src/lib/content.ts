@@ -144,22 +144,27 @@ function buildContentFromSheets(
     .filter((item) => item.title);
   if (news.length) base.news = news;
 
-  const femmes: SiteContent["teams"]["femmes"] = [];
+  const dames: SiteContent["teams"]["dames"] = [];
+  const messieurs: SiteContent["teams"]["messieurs"] = [];
   const mixtes: SiteContent["teams"]["mixtes"] = [];
   for (const row of (tabs.equipes ?? []).filter(isPublished)) {
     const category = parseTeamCategory(row.categorie ?? row.category ?? "");
+    if (!category) continue;
     const team = {
       name: row.nom ?? row.name ?? "",
       division: row.division ?? "",
+      category,
       coach: row.entraineur ?? row.coach ?? base.ui.label_entraineur,
       training: row.horaire ?? row.entrainement ?? row.training ?? "À confirmer",
       description: row.description ?? "",
     };
     if (!team.name) continue;
-    if (category === "femmes") femmes.push(team);
-    else if (category === "mixtes") mixtes.push(team);
+    if (category === "dames") dames.push(team);
+    else if (category === "messieurs") messieurs.push(team);
+    else mixtes.push(team);
   }
-  if (femmes.length) base.teams.femmes = femmes;
+  if (dames.length) base.teams.dames = dames;
+  if (messieurs.length) base.teams.messieurs = messieurs;
   if (mixtes.length) base.teams.mixtes = mixtes;
 
   const activities = (tabs.activites ?? [])
@@ -299,7 +304,9 @@ export function getActivitiesWithDetailPages(
 
 export function toRuntimeConfig(content: SiteContent) {
   const teamCount =
-    content.teams.femmes.length + content.teams.mixtes.length;
+    content.teams.dames.length +
+    content.teams.messieurs.length +
+    content.teams.mixtes.length;
 
   return {
     contact: content.config.contact,

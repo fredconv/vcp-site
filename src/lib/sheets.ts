@@ -1,3 +1,5 @@
+import type { TeamCategory } from "./types";
+
 type CsvRow = Record<string, string>;
 
 const SHEET_TABS = [
@@ -163,12 +165,19 @@ export function parseSponsorTier(
   return "silver";
 }
 
-export function parseTeamCategory(
-  value: string
-): "femmes" | "mixtes" | null {
+export function parseTeamCategory(value: string): TeamCategory | null {
   const cat = value.toLowerCase().trim();
-  if (cat === "femmes" || cat === "femme" || cat === "dames") return "femmes";
-  if (cat === "mixtes" || cat === "mixte" || cat === "loisirs" || cat === "hommes")
-    return "mixtes";
+  if (cat === "femmes" || cat === "femme" || cat === "dames" || cat === "dame")
+    return "dames";
+  if (
+    cat === "messieurs" ||
+    cat === "messieur" ||
+    cat === "hommes" ||
+    cat === "homme" ||
+    cat === "masculin"
+  )
+    return "messieurs";
+  if (cat === "mixtes" || cat === "mixte" || cat === "loisirs" || cat === "loisir")
+    return "mixte";
   return null;
 }

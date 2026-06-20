@@ -6,6 +6,7 @@ import { pageHeroImage } from "@/lib/image-url";
 import { t } from "@/lib/props";
 import type { SiteRuntimeConfig } from "@/lib/content";
 import type { TeamItem } from "@/lib/types";
+import { teamCategoryLabel } from "@/lib/team-labels";
 
 export async function generateMetadata(): Promise<Metadata> {
   const content = await getContent();
@@ -30,6 +31,12 @@ function TeamCard({ runtime, team }: { runtime: SiteRuntimeConfig; team: TeamIte
         {team.description}
       </p>
       <dl className="mt-5 space-y-2 border-t border-vcp-dark/5 pt-4 text-sm">
+        <div className="flex justify-between gap-4">
+          <dt className="font-medium text-vcp-dark/40">{t(runtime, "label_categorie")}</dt>
+          <dd className="font-semibold text-vcp-dark">
+            {teamCategoryLabel(runtime, team.category)}
+          </dd>
+        </div>
         <div className="flex justify-between gap-4">
           <dt className="font-medium text-vcp-dark/40">{t(runtime, "label_entraineur")}</dt>
           <dd className="font-semibold text-vcp-dark">{team.coach}</dd>
@@ -88,18 +95,30 @@ export default async function EquipesPage() {
           <p className="max-w-3xl text-base leading-relaxed text-gray-600">
             {content.teamsIntro}
           </p>
-          <TeamSection
-            runtime={runtime}
-            title={t(runtime, "equipes_section_femmes_titre")}
-            subtitle={t(runtime, "equipes_section_femmes_sous_titre")}
-            teamList={content.teams.femmes}
-          />
-          <TeamSection
-            runtime={runtime}
-            title={t(runtime, "equipes_section_mixtes_titre")}
-            subtitle={t(runtime, "equipes_section_mixtes_sous_titre")}
-            teamList={content.teams.mixtes}
-          />
+          {content.teams.dames.length > 0 && (
+            <TeamSection
+              runtime={runtime}
+              title={t(runtime, "equipes_section_femmes_titre")}
+              subtitle={t(runtime, "equipes_section_femmes_sous_titre")}
+              teamList={content.teams.dames}
+            />
+          )}
+          {content.teams.messieurs.length > 0 && (
+            <TeamSection
+              runtime={runtime}
+              title={t(runtime, "equipes_section_messieurs_titre")}
+              subtitle={t(runtime, "equipes_section_messieurs_sous_titre")}
+              teamList={content.teams.messieurs}
+            />
+          )}
+          {content.teams.mixtes.length > 0 && (
+            <TeamSection
+              runtime={runtime}
+              title={t(runtime, "equipes_section_mixtes_titre")}
+              subtitle={t(runtime, "equipes_section_mixtes_sous_titre")}
+              teamList={content.teams.mixtes}
+            />
+          )}
         </div>
       </section>
 

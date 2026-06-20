@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { HomeHeroContent } from "@/components/HomeHeroContent";
 import { Button } from "@/components/ui";
 import type { SiteRuntimeConfig } from "@/lib/content";
 import { resolveImageUrl } from "@/lib/image-url";
@@ -22,31 +23,16 @@ export function HomeHero({ runtime }: HeroRuntimeProps) {
         />
         <div className="absolute inset-0 bg-gradient-to-r from-vcp-dark/95 via-vcp-dark/80 to-vcp-dark/50" />
         <div className="relative mx-auto flex max-w-6xl flex-col justify-center px-4 py-16 sm:px-6 sm:py-20 lg:min-h-[480px] lg:py-28">
-          <p className="text-xs font-bold uppercase tracking-[0.25em] text-vcp-gold">
-            {t(runtime, "hero_eyebrow")}
-          </p>
-          <h1 className="font-display mt-4 max-w-2xl text-5xl font-extrabold uppercase leading-[0.9] tracking-tight text-white sm:text-6xl lg:text-7xl">
-            {runtime.ui.hero_ligne1}
-            <br />
-            {runtime.ui.hero_ligne2}
-            <br />
-            <span className="text-vcp-red">{runtime.ui.hero_highlight}</span>
-          </h1>
-          <p className="mt-6 max-w-md text-base leading-relaxed text-white/80 sm:text-lg">
-            {runtime.description}
-          </p>
-          <div className="mt-8 flex flex-wrap gap-4">
-            <Button
-              href={runtime.links.inscription}
-              variant="primary"
-              external
-            >
-              {t(runtime, "cta_rejoindre")}
-            </Button>
-            <Button href="/club" variant="ghost">
-              {t(runtime, "cta_decouvrir")}
-            </Button>
-          </div>
+          <HomeHeroContent
+            eyebrow={t(runtime, "hero_eyebrow")}
+            line1={runtime.ui.hero_ligne1}
+            line2={runtime.ui.hero_ligne2}
+            highlight={runtime.ui.hero_highlight}
+            description={runtime.description}
+            ctaRejoindre={t(runtime, "cta_rejoindre")}
+            ctaDecouvrir={t(runtime, "cta_decouvrir")}
+            inscriptionHref={runtime.links.inscription}
+          />
         </div>
         <div
           className="relative h-12 bg-vcp-dark sm:h-16"
@@ -65,31 +51,18 @@ export function HomeHero({ runtime }: HeroRuntimeProps) {
       <div className="mx-auto grid max-w-6xl lg:grid-cols-2">
         <div className="relative flex flex-col justify-center px-4 py-16 sm:px-6 sm:py-20 lg:py-28">
           <div className="absolute -left-20 top-0 h-full w-1/2 bg-vcp-red/10 blur-3xl" />
-          <p className="relative text-xs font-bold uppercase tracking-[0.25em] text-vcp-gold">
-            {t(runtime, "hero_eyebrow")}
-          </p>
-          <h1 className="relative font-display mt-4 text-5xl font-extrabold uppercase leading-[0.9] tracking-tight text-white sm:text-6xl lg:text-7xl">
-            {runtime.ui.hero_ligne1}
-            <br />
-            {runtime.ui.hero_ligne2}
-            <br />
-            <span className="text-vcp-red">{runtime.ui.hero_highlight}</span>
-          </h1>
-          <p className="relative mt-6 max-w-md text-base leading-relaxed text-white/70 sm:text-lg">
-            {runtime.description}
-          </p>
-          <div className="relative mt-8 flex flex-wrap gap-4">
-            <Button
-              href={runtime.links.inscription}
-              variant="primary"
-              external
-            >
-              {t(runtime, "cta_rejoindre")}
-            </Button>
-            <Button href="/club" variant="ghost">
-              {t(runtime, "cta_decouvrir")}
-            </Button>
-          </div>
+          <HomeHeroContent
+            eyebrow={t(runtime, "hero_eyebrow")}
+            line1={runtime.ui.hero_ligne1}
+            line2={runtime.ui.hero_ligne2}
+            highlight={runtime.ui.hero_highlight}
+            description={runtime.description}
+            ctaRejoindre={t(runtime, "cta_rejoindre")}
+            ctaDecouvrir={t(runtime, "cta_decouvrir")}
+            inscriptionHref={runtime.links.inscription}
+            relative
+            descriptionMuted
+          />
         </div>
 
         <div className="relative flex items-center justify-center bg-vcp-red px-8 py-16 lg:py-0">

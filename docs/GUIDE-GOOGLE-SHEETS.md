@@ -157,7 +157,7 @@ Le bouton rouge **Rejoindre** reste géré par `cta_rejoindre_short` et `lien_in
 | U11 | femmes | Jeunes | À confirmer | Samedi 10h | Initiation... | TRUE |
 | Loisirs 3 | mixtes | Loisir | À confirmer | Mercredi 20h | Volley loisir... | TRUE |
 
-**categorie** : `femmes` ou `mixtes`
+**categorie** : `dames`, `messieurs` ou `mixte` (valeurs `femmes` / `mixtes` encore acceptées)
 
 ---
 

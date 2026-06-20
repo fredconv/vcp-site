@@ -184,7 +184,7 @@ Sans fiche (ou `publie = FALSE`), l’événement reste visible sur la liste mai
 
 | nom | categorie | division | entraineur | horaire | description | publie |
 
-- **categorie** : écrire `femmes` ou `mixtes`
+- **categorie** : écrire `dames`, `messieurs` ou `mixte` (anciennes valeurs `femmes` et `mixtes` restent acceptées)
 
 ### `sponsors`
 
@@ -267,7 +267,7 @@ Cartes cliquables vers une page du site (ex. `/equipes`).
 ### Ajouter une équipe
 
 1. Onglet **equipes**
-2. Nouvelle ligne : nom, categorie (`femmes` ou `mixtes`), division, entraîneur, horaire, description
+2. Nouvelle ligne : nom, categorie (`dames`, `messieurs` ou `mixte`), division, entraîneur, horaire, description
 3. **publie** = `TRUE`
 4. Pensez à mettre à jour **stats** si le nombre d’équipes change (ex. « 11 » → « 12 »)
 5. Mise en ligne

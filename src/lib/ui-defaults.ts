@@ -59,6 +59,10 @@ export const defaultUi: Record<string, string> = {
   texte_contact_footer: "Pour plus de renseignements,",
   cta_contactez_nous: "contactez-nous",
   label_entraineur: "Entraîneur",
+  label_categorie: "Catégorie",
+  team_categorie_dames: "Dames",
+  team_categorie_messieurs: "Messieurs",
+  team_categorie_mixte: "Mixte",
   label_entrainements: "Entraînements",
   label_horaire: "Horaire :",
   label_age: "Âge :",
@@ -104,9 +108,12 @@ export const defaultUi: Record<string, string> = {
   equipes_hero_highlight: "équipes",
   equipes_hero_sous_titre:
     "Équipes dames, hommes et jeunes — du loisir à la compétition provinciale.",
-  equipes_section_femmes_titre: "Équipes femmes",
+  equipes_section_femmes_titre: "Équipes dames",
   equipes_section_femmes_sous_titre:
     "Nos équipes dames évoluent en championnat provincial.",
+  equipes_section_messieurs_titre: "Équipes messieurs",
+  equipes_section_messieurs_sous_titre:
+    "Section masculine — jeunes et compétition selon les effectifs.",
   equipes_section_mixtes_titre: "Équipes mixtes & loisirs",
   equipes_section_mixtes_sous_titre: "Formules loisir accessibles à tous.",
   equipes_cta_titre: "Envie de rejoindre une équipe ?",

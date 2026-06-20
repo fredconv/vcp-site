@@ -13,9 +13,12 @@ export type NewsItem = {
   category: string;
 };
 
+export type TeamCategory = "dames" | "messieurs" | "mixte";
+
 export type TeamItem = {
   name: string;
   division: string;
+  category: TeamCategory;
   coach: string;
   training: string;
   description: string;
@@ -126,7 +129,8 @@ export type SiteContent = {
   news: NewsItem[];
   teamsIntro: string;
   teams: {
-    femmes: TeamItem[];
+    dames: TeamItem[];
+    messieurs: TeamItem[];
     mixtes: TeamItem[];
   };
   activities: ActivityItem[];
