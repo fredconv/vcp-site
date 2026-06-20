@@ -175,10 +175,11 @@ Sans fiche (ou `publie = FALSE`), l’événement reste visible sur la liste mai
 
 ### `actualites`
 
-| id | titre | date | categorie | extrait | publie |
+| id | titre | date | categorie | extrait | url | publie |
 
 - **extrait** : court résumé sous le titre sur l’accueil
 - **categorie** : petit badge (ex. « Club », « Inscriptions »)
+- **url** : lien optionnel « En savoir plus » sur la carte — chemin interne (`/equipes`) ou adresse complète (`https://…`, nouvel onglet)
 
 ### `equipes`
 
@@ -239,7 +240,7 @@ Cartes cliquables vers une page du site (ex. `/equipes`).
 
 1. Onglet **actualites**
 2. Nouvelle ligne en bas
-3. Remplir titre, date, catégorie, extrait
+3. Remplir titre, date, catégorie, extrait, **url** (optionnel)
 4. **publie** = `TRUE`
 5. Mise en ligne
 

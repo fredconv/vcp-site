@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { SectionHeader } from "@/components/ui";
+import { resolveContentLink } from "@/lib/content-link";
 import type { EventsSectionProps, NewsSectionProps } from "@/lib/props";
 import { t } from "@/lib/props";
 import type { ActivityItem } from "@/lib/types";
@@ -62,11 +63,44 @@ export function NewsSection({ runtime, news }: NewsSectionProps) {
               <p className="mt-3 flex-1 text-sm leading-relaxed text-vcp-dark/65">
                 {item.excerpt}
               </p>
+              {item.url && resolveContentLink(item.url) && (
+                <NewsReadMoreLink
+                  url={item.url}
+                  label={t(runtime, "cta_en_savoir_plus")}
+                />
+              )}
             </article>
           ))}
         </div>
       </div>
     </section>
+  );
+}
+
+function NewsReadMoreLink({ url, label }: { url: string; label: string }) {
+  const link = resolveContentLink(url);
+  if (!link) return null;
+
+  const className =
+    "mt-4 inline-flex items-center text-sm font-bold uppercase tracking-wide text-vcp-red transition-colors hover:text-vcp-red-dark";
+
+  if (link.external) {
+    return (
+      <a
+        href={link.href}
+        target="_blank"
+        rel="noopener noreferrer"
+        className={className}
+      >
+        {label} →
+      </a>
+    );
+  }
+
+  return (
+    <Link href={link.href} className={className}>
+      {label} →
+    </Link>
   );
 }
 

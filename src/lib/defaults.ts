@@ -55,6 +55,7 @@ export const defaultContent: SiteContent = {
       excerpt:
         "Les entraînements ont repris ! Retrouvez vos équipes et découvrez les nouveaux créneaux sur la page Équipes.",
       category: "Club",
+      url: "/equipes",
     },
     {
       id: "inscriptions-ouvertes",
@@ -63,6 +64,7 @@ export const defaultContent: SiteContent = {
       excerpt:
         "Vous souhaitez rejoindre le VCP ? Le formulaire d'inscription en ligne est disponible — de 7 à 77 ans, tous les niveaux.",
       category: "Inscriptions",
+      url: "/inscriptions",
     },
     {
       id: "evenements-2026",
@@ -71,6 +73,7 @@ export const defaultContent: SiteContent = {
       excerpt:
         "Journée des familles, beach-volley et week-end ADEPS : trois temps forts à ne pas manquer cette année.",
       category: "Événements",
+      url: "/activites",
     },
   ],
   teamsIntro:

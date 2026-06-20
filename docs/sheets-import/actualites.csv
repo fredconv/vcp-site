@@ -1,4 +1,4 @@
-id;titre;date;categorie;extrait;publie
-saison-2025;Bienvenue à la saison 2025-2026;Septembre 2025;Club;Les entraînements ont repris ! Retrouvez vos équipes et découvrez les nouveaux créneaux sur la page Équipes.;TRUE
-inscriptions-ouvertes;Inscriptions ouvertes;Août 2025;Inscriptions;Vous souhaitez rejoindre le VCP ? Le formulaire d'inscription en ligne est disponible — de 7 à 77 ans, tous les niveaux.;TRUE
-evenements-2026;Dates à retenir en 2026;Juin 2025;Événements;Journée des familles, beach-volley et week-end ADEPS : trois temps forts à ne pas manquer cette année.;TRUE
+id;titre;date;categorie;extrait;url;publie
+saison-2025;Bienvenue à la saison 2025-2026;Septembre 2025;Club;Les entraînements ont repris ! Retrouvez vos équipes et découvrez les nouveaux créneaux sur la page Équipes.;/equipes;TRUE
+inscriptions-ouvertes;Inscriptions ouvertes;Août 2025;Inscriptions;Vous souhaitez rejoindre le VCP ? Le formulaire d'inscription en ligne est disponible — de 7 à 77 ans, tous les niveaux.;/inscriptions;TRUE
+evenements-2026;Dates à retenir en 2026;Juin 2025;Événements;Journée des familles, beach-volley et week-end ADEPS : trois temps forts à ne pas manquer cette année.;/activites;TRUE

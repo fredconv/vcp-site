@@ -140,6 +140,7 @@ function buildContentFromSheets(
       date: row.date ?? "",
       excerpt: row.extrait ?? row.description ?? "",
       category: row.categorie ?? row.category ?? "Club",
+      url: (row.url ?? row.lien ?? "").trim() || undefined,
     }))
     .filter((item) => item.title);
   if (news.length) base.news = news;

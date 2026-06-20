@@ -11,6 +11,7 @@ export type NewsItem = {
   date: string;
   excerpt: string;
   category: string;
+  url?: string;
 };
 
 export type TeamCategory = "dames" | "messieurs" | "mixte";

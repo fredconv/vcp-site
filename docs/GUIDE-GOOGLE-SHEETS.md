@@ -128,9 +128,11 @@ Le bouton rouge **Rejoindre** reste géré par `cta_rejoindre_short` et `lien_in
 
 ### Onglet `actualites`
 
-| id | titre | date | categorie | extrait | publie |
-|----|-------|------|-----------|---------|--------|
-| saison-2025 | Bienvenue à la saison 2025-2026 | Septembre 2025 | Club | Les entraînements ont repris... | TRUE |
+| id | titre | date | categorie | extrait | url | publie |
+|----|-------|------|-----------|---------|-----|--------|
+| saison-2025 | Bienvenue à la saison 2025-2026 | Septembre 2025 | Club | Les entraînements ont repris... | /equipes | TRUE |
+
+- **url** (optionnel) : si rempli, affiche « En savoir plus » — `/page` pour une page du site, `https://…` pour un lien externe (nouvel onglet)
 
 ---
 
