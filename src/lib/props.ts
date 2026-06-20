@@ -12,7 +12,7 @@ export type NewsSectionProps = {
 
 export type EventsSectionProps = {
   runtime: SiteRuntimeConfig;
-  events: import("@/lib/types").EventItem[];
+  activities: import("@/lib/types").ActivityItem[];
 };
 
 export type SponsorBannerProps = {

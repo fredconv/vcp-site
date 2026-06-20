@@ -63,10 +63,10 @@ function MobileNav({ runtime }: HeaderFooterProps) {
         </svg>
       </summary>
       <nav
-        className="absolute right-0 top-full mt-2 w-56 rounded-2xl border border-white/10 bg-vcp-dark py-2 shadow-2xl"
+        className="absolute right-0 top-full z-50 mt-2 w-64 max-w-[calc(100vw-2rem)] rounded-2xl border border-white/10 bg-vcp-dark py-2 shadow-2xl"
         aria-label="Navigation mobile"
       >
-        <NavItems nav={runtime.nav} />
+        <NavItems nav={runtime.nav} layout="column" />
         <div className="mt-2 border-t border-white/10 px-3 pt-3">
           <Link
             href={runtime.links.inscription}

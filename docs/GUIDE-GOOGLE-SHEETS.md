@@ -135,20 +135,11 @@ Le bouton rouge **Rejoindre** reste géré par `cta_rejoindre_short` et `lien_in
 
 ### Onglet `evenements`
 
+> **Obsolète** — l'accueil et le site utilisent l'onglet **`activites`**. Vous pouvez supprimer cet onglet ou l'ignorer.
+
 | id | titre | date | description | publie |
 |----|-------|------|-------------|--------|
 | familles-2026 | Journée des familles | 17 mai 2026 | Une journée conviviale... | TRUE |
-
----
-
-### Onglet `equipes`
-
-| nom | categorie | division | entraineur | horaire | description | publie |
-|-----|-----------|----------|------------|---------|-------------|--------|
-| U11 | femmes | Jeunes | À confirmer | Samedi 10h | Initiation... | TRUE |
-| Loisirs 3 | mixtes | Loisir | À confirmer | Mercredi 20h | Volley loisir... | TRUE |
-
-**categorie** : `femmes` ou `mixtes`
 
 ---
 
@@ -162,8 +153,20 @@ Le bouton rouge **Rejoindre** reste géré par `cta_rejoindre_short` et `lien_in
 **Dates**
 - `date_debut` / `date_fin` : sélecteur de date Google Sheets (format JJ/MM/AAAA ou AAAA-MM-JJ)
 - `texte_date` : texte libre affiché à la place (ex. « dernier week-end de septembre »). Si vide → dates formatées automatiquement
-- La page **Activités** sépare automatiquement **à venir** (fin ≥ aujourd'hui) et **terminés** (fin < aujourd'hui, toujours `publie = TRUE`)
+- Page **Activités** : sépare **à venir** et **terminés** (fin &lt; aujourd'hui)
+- **Accueil** (section « Prochains événements ») : mêmes lignes, **à venir uniquement**, affichage réduit (**titre + date**)
 - Colonne **`slug`** : identifiant pour la page détail `/activites/[slug]` (doit correspondre à la Sheet 2 — voir `docs/FICHES-ACTIVITES.md`)
+
+---
+
+### Onglet `equipes`
+
+| nom | categorie | division | entraineur | horaire | description | publie |
+|-----|-----------|----------|------------|---------|-------------|--------|
+| U11 | femmes | Jeunes | À confirmer | Samedi 10h | Initiation... | TRUE |
+| Loisirs 3 | mixtes | Loisir | À confirmer | Mercredi 20h | Volley loisir... | TRUE |
+
+**categorie** : `femmes` ou `mixtes`
 
 ---
 

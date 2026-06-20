@@ -2,6 +2,34 @@ import Link from "next/link";
 import { SectionHeader } from "@/components/ui";
 import type { EventsSectionProps, NewsSectionProps } from "@/lib/props";
 import { t } from "@/lib/props";
+import type { ActivityItem } from "@/lib/types";
+
+function ActivityPreviewRow({ activity }: { activity: ActivityItem }) {
+  const title = activity.hasDetailPage ? (
+    <Link
+      href={`/activites/${activity.slug}`}
+      className="hover:text-vcp-red hover:underline"
+    >
+      {activity.title}
+    </Link>
+  ) : (
+    activity.title
+  );
+
+  return (
+    <div className="card-lift flex flex-col gap-2 rounded-2xl border border-vcp-dark/5 bg-vcp-cream px-5 py-4 sm:flex-row sm:items-center sm:justify-between sm:gap-6">
+      <h3 className="font-display text-lg font-extrabold uppercase leading-tight text-vcp-dark">
+        {title}
+      </h3>
+      <time
+        className="shrink-0 text-sm font-bold text-vcp-red"
+        dateTime={activity.dateEnd || activity.dateStart || undefined}
+      >
+        {activity.date}
+      </time>
+    </div>
+  );
+}
 
 export function NewsSection({ runtime, news }: NewsSectionProps) {
   return (
@@ -42,7 +70,9 @@ export function NewsSection({ runtime, news }: NewsSectionProps) {
   );
 }
 
-export function EventsSection({ runtime, events }: EventsSectionProps) {
+export function EventsSection({ runtime, activities }: EventsSectionProps) {
+  if (!activities.length) return null;
+
   return (
     <section className="relative bg-white py-16 sm:py-24">
       <div className="absolute left-0 top-0 h-2 w-full bg-vcp-red" aria-hidden />
@@ -53,41 +83,19 @@ export function EventsSection({ runtime, events }: EventsSectionProps) {
           highlight={t(runtime, "home_events_highlight")}
         />
 
-        <div className="mt-10 space-y-4">
-          {events.map((event, i) => (
-            <div
-              key={event.id}
-              className="card-lift flex flex-col gap-4 rounded-2xl border-l-4 border-vcp-red bg-vcp-cream p-6 sm:flex-row sm:items-center sm:justify-between"
-            >
-              <div className="flex gap-4">
-                <span className="font-display text-4xl font-extrabold text-vcp-red/20">
-                  {String(i + 1).padStart(2, "0")}
-                </span>
-                <div>
-                  <h3 className="font-display text-xl font-extrabold uppercase text-vcp-dark">
-                    {event.title}
-                  </h3>
-                  <p className="mt-1 text-sm text-vcp-dark/65">
-                    {event.description}
-                  </p>
-                </div>
-              </div>
-              <time className="shrink-0 rounded-full bg-vcp-red px-5 py-2 text-sm font-bold uppercase tracking-wide text-white">
-                {event.date}
-              </time>
-            </div>
+        <div className="mt-10 space-y-3">
+          {activities.map((activity) => (
+            <ActivityPreviewRow key={activity.id} activity={activity} />
           ))}
         </div>
 
         <p className="mt-8 text-center text-sm text-vcp-dark/50">
-          {t(runtime, "texte_contact_footer")}{" "}
           <Link
-            href="/contact"
+            href="/activites"
             className="font-bold text-vcp-red hover:underline"
           >
-            {t(runtime, "cta_contactez_nous")}
+            {t(runtime, "nav_activites")} →
           </Link>
-          .
         </p>
       </div>
     </section>
