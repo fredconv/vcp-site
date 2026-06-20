@@ -1,0 +1,159 @@
+import Image from "next/image";
+import Link from "next/link";
+import { Button } from "@/components/ui";
+import type { SiteRuntimeConfig } from "@/lib/site";
+import { siteConfig } from "@/lib/site";
+
+type HeroRuntimeProps = {
+  runtime: SiteRuntimeConfig;
+};
+
+export function HomeHero({ runtime }: HeroRuntimeProps) {
+  return (
+    <section className="relative overflow-hidden bg-vcp-dark">
+      <div className="mx-auto grid max-w-6xl lg:grid-cols-2">
+        <div className="relative flex flex-col justify-center px-4 py-16 sm:px-6 sm:py-20 lg:py-28">
+          <div className="absolute -left-20 top-0 h-full w-1/2 bg-vcp-red/10 blur-3xl" />
+          <p className="relative text-xs font-bold uppercase tracking-[0.25em] text-vcp-gold">
+            Brabant wallon · Depuis {runtime.founded}
+          </p>
+          <h1 className="relative font-display mt-4 text-5xl font-extrabold uppercase leading-[0.9] tracking-tight text-white sm:text-6xl lg:text-7xl">
+            Volley
+            <br />
+            Club
+            <br />
+            <span className="text-vcp-red">Perwez</span>
+          </h1>
+          <p className="relative mt-6 max-w-md text-base leading-relaxed text-white/70 sm:text-lg">
+            Volleyball pour tous de 7 à 77 ans — dynamique, familial et ambitieux.
+          </p>
+          <div className="relative mt-8 flex flex-wrap gap-4">
+            <Button
+              href={runtime.links.inscription}
+              variant="primary"
+              external
+            >
+              Rejoindre le club
+            </Button>
+            <Button href="/club" variant="ghost">
+              Découvrir
+            </Button>
+          </div>
+        </div>
+
+        <div className="relative flex items-center justify-center bg-vcp-red px-8 py-16 lg:py-0">
+          <div
+            className="absolute inset-y-0 left-0 hidden w-16 bg-vcp-red lg:block"
+            style={{ clipPath: "polygon(0 0, 100% 0, 0 100%)" }}
+            aria-hidden
+          />
+          <div className="relative">
+            <div className="absolute -inset-8 rounded-full bg-vcp-blue/20 blur-2xl" />
+            <Image
+              src="/logo.png"
+              alt={`Logo ${siteConfig.name}`}
+              width={360}
+              height={360}
+              className="relative max-w-[280px] drop-shadow-2xl sm:max-w-xs lg:max-w-sm"
+              priority
+            />
+          </div>
+        </div>
+      </div>
+
+      <div
+        className="h-12 bg-vcp-dark sm:h-16"
+        style={{
+          background:
+            "linear-gradient(to bottom right, var(--vcp-red) 50%, var(--vcp-dark) 50%)",
+        }}
+        aria-hidden
+      />
+    </section>
+  );
+}
+
+type HeroProps = HeroRuntimeProps & {
+  title: string;
+  highlight?: string;
+  subtitle?: string;
+  cta?: { label: string; href: string; external?: boolean };
+};
+
+export function Hero({ runtime, title, highlight, subtitle, cta }: HeroProps) {
+  return (
+    <section className="relative overflow-hidden bg-vcp-dark pattern-court">
+      <div
+        className="absolute right-0 top-0 h-full w-1/3 bg-vcp-red opacity-90"
+        style={{ clipPath: "polygon(30% 0, 100% 0, 100% 100%, 0 100%)" }}
+        aria-hidden
+      />
+      <div className="relative mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-20">
+        <p className="text-xs font-bold uppercase tracking-[0.2em] text-vcp-gold">
+          {siteConfig.shortName}
+        </p>
+        <h1 className="font-display mt-3 max-w-2xl text-4xl font-extrabold uppercase leading-none tracking-tight text-white sm:text-5xl">
+          {title}
+          {highlight && (
+            <>
+              {" "}
+              <span className="text-vcp-red">{highlight}</span>
+            </>
+          )}
+        </h1>
+        {subtitle && (
+          <p className="mt-4 max-w-xl text-base text-white/70 sm:text-lg">
+            {subtitle}
+          </p>
+        )}
+        {cta && (
+          <div className="mt-8">
+            <Button href={cta.href} variant="primary" external={cta.external}>
+              {cta.label}
+            </Button>
+          </div>
+        )}
+      </div>
+      <div
+        className="h-8 bg-background"
+        style={{
+          background:
+            "linear-gradient(to bottom right, var(--vcp-dark) 50%, var(--background) 50%)",
+        }}
+        aria-hidden
+      />
+    </section>
+  );
+}
+
+export function CTASection({ runtime }: HeroRuntimeProps) {
+  return (
+    <section className="relative overflow-hidden bg-vcp-red">
+      <div className="absolute inset-0 pattern-court opacity-50" aria-hidden />
+      <div className="relative mx-auto flex max-w-6xl flex-col items-center gap-6 px-4 py-16 text-center sm:px-6 sm:py-20">
+        <h2 className="font-display text-3xl font-extrabold uppercase leading-none tracking-tight text-white sm:text-4xl">
+          Envie de jouer
+          <br />
+          <span className="text-vcp-gold">au volley ?</span>
+        </h2>
+        <p className="max-w-lg text-base text-white/85">
+          Rejoignez le {siteConfig.name} — de 7 à 77 ans, tous les niveaux
+          bienvenus.
+        </p>
+        <div className="flex flex-wrap justify-center gap-4">
+          <Button
+            href={runtime.links.inscription}
+            variant="primary"
+            external
+            className="!bg-white !text-vcp-red hover:!bg-vcp-cream"
+          >
+            S&apos;inscrire
+          </Button>
+          <Button href="/contact" variant="ghost">
+            Nous contacter
+          </Button>
+        </div>
+      </div>
+    </section>
+  );
+}

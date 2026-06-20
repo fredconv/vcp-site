@@ -1,12 +1,17 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #1a1a2e;
+  --background: #faf8f4;
+  --foreground: #12121f;
   --vcp-red: #d51900;
   --vcp-blue: #333370;
   --vcp-red-dark: #a81300;
   --vcp-blue-dark: #252550;
+  --vcp-dark: #12121f;
+  --vcp-cream: #f5f0e6;
+  --vcp-gold: #ffb800;
+  --shadow-card: 0 4px 24px -4px rgba(18, 18, 31, 0.12);
+  --shadow-lift: 0 12px 40px -8px rgba(18, 18, 31, 0.18);
 }
 
 @theme inline {
@@ -16,6 +21,9 @@
   --color-vcp-blue: var(--vcp-blue);
   --color-vcp-red-dark: var(--vcp-red-dark);
   --color-vcp-blue-dark: var(--vcp-blue-dark);
+  --color-vcp-dark: var(--vcp-dark);
+  --color-vcp-cream: var(--vcp-cream);
+  --color-vcp-gold: var(--vcp-gold);
   --font-sans: var(--font-inter);
   --font-display: var(--font-barlow);
 }
@@ -30,16 +38,60 @@ body {
   font-family: var(--font-barlow), system-ui, sans-serif;
 }
 
-/* Subtle diagonal energy pattern for hero sections */
-.pattern-energy {
+/* Diagonal clip utilities */
+.clip-diagonal-b {
+  clip-path: polygon(0 0, 100% 0, 100% calc(100% - 48px), 0 100%);
+}
+
+.clip-diagonal-t {
+  clip-path: polygon(0 48px, 100% 0, 100% 100%, 0 100%);
+}
+
+@media (min-width: 768px) {
+  .clip-diagonal-b {
+    clip-path: polygon(0 0, 100% 0, 100% calc(100% - 72px), 0 100%);
+  }
+  .clip-diagonal-t {
+    clip-path: polygon(0 72px, 100% 0, 100% 100%, 0 100%);
+  }
+}
+
+/* Card hover lift */
+.card-lift {
+  box-shadow: var(--shadow-card);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.card-lift:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lift);
+}
+
+/* Big watermark number on cards */
+.card-watermark {
+  position: relative;
+  overflow: hidden;
+}
+.card-watermark::before {
+  content: attr(data-num);
+  position: absolute;
+  right: -8px;
+  top: -16px;
+  font-family: var(--font-barlow), system-ui, sans-serif;
+  font-size: 7rem;
+  font-weight: 800;
+  line-height: 1;
+  color: rgba(18, 18, 31, 0.04);
+  pointer-events: none;
+  user-select: none;
+}
+
+/* Subtle court-line pattern */
+.pattern-court {
   background-image: linear-gradient(
-      135deg,
-      rgba(213, 25, 0, 0.04) 25%,
-      transparent 25%,
-      transparent 50%,
-      rgba(51, 51, 112, 0.04) 50%,
-      rgba(51, 51, 112, 0.04) 75%,
-      transparent 75%
-    );
-  background-size: 24px 24px;
+      to right,
+      rgba(255, 255, 255, 0.04) 1px,
+      transparent 1px
+    ),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+  background-size: 48px 48px;
 }

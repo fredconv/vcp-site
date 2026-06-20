@@ -1,0 +1,35 @@
+{
+  "version": 1,
+  "skills": {
+    "image-logo-icons": {
+      "source": "dhananjaym182/ai-ui-design-skills",
+      "sourceType": "github",
+      "skillPath": "skills/image-logo-icons/SKILL.md",
+      "computedHash": "744d2b5e79b58b0ed578f42864e86f140db37797fe2f2f3b70fa35d85ae3f084"
+    },
+    "saas-product-ui-system": {
+      "source": "dhananjaym182/ai-ui-design-skills",
+      "sourceType": "github",
+      "skillPath": "skills/saas-product-ui-system/SKILL.md",
+      "computedHash": "4ea4f01fe8c60f9881209344b246453c0c554a68717f7b2d49d90581e7428acc"
+    },
+    "saas-ui-ux-designer-skill-typography-flex": {
+      "source": "dhananjaym182/ai-ui-design-skills",
+      "sourceType": "github",
+      "skillPath": "skills/saas-ui-ux-designer-skill-typography-flex/SKILL.md",
+      "computedHash": "023913109b0013698785c45532116c44e2c0189c6898e4d4d7dbe112c8ba365a"
+    },
+    "saas-ui-ux-designer-with-flex": {
+      "source": "dhananjaym182/ai-ui-design-skills",
+      "sourceType": "github",
+      "skillPath": "skills/saas-ui-ux-designer-with-flex/SKILL.md",
+      "computedHash": "1c86a1ef9668d0d713349be6b49bf05c74ecb2eb9629e388e996f2e0d0f92c8a"
+    },
+    "ui-ux-design-system": {
+      "source": "dhananjaym182/ai-ui-design-skills",
+      "sourceType": "github",
+      "skillPath": "skills/ui-ux-design-system/SKILL.md",
+      "computedHash": "b4df2563b0d1733e1c77289b3c290b03dc934a5b29d187bfa8b49570917ef391"
+    }
+  }
+}

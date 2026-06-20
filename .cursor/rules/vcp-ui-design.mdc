@@ -1,0 +1,35 @@
+---
+description: Design UI du site Volley Club Perwez — couleurs club, skills UI installés
+globs: src/**/*.{tsx,css}
+alwaysApply: false
+---
+
+# VCP — UI Design
+
+Ce projet inclut les skills UI de [ai-ui-design-skills](https://github.com/dhananjaym182/ai-ui-design-skills) dans `.cursor/skills/` et `.agents/skills/`.
+
+## Skills disponibles
+
+- `ui-ux-design-system` — pages, composants, hiérarchie, responsive (prioritaire pour ce site vitrine)
+- `saas-ui-ux-designer-with-flex` — layouts flex/grid complexes
+- `saas-ui-ux-designer-skill-typography-flex` — typographie et échelle de texte
+- `saas-product-ui-system` — tokens, patterns produit
+- `image-logo-icons` — logos, icônes, assets visuels
+
+Lire le `SKILL.md` concerné avant de refondre une page ou un composant.
+
+## Identité VCP (non négociable)
+
+- **Couleur dominante** : `#D51900` (rouge maillot) — header, hero, sections pleine largeur, titres
+- **Couleur secondaire** : `#333370` (bleu) — accents, labels, boutons secondaires
+- **Ton** : sportif, dynamique, familial, professionnel — pas SaaS corporate neutre
+- **Langue** : français (fr-BE)
+- **Mobile-first** : Tailwind, responsive obligatoire
+
+## Tokens Tailwind du projet
+
+Utiliser `vcp-red`, `vcp-red-dark`, `vcp-blue`, `vcp-blue-dark` (définis dans `globals.css`).
+
+## Contenu éditable
+
+Données centralisées dans `src/lib/site.ts` — ne pas hardcoder textes/coordonnées dans les composants.
