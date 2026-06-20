@@ -3,14 +3,15 @@ import Image from "next/image";
 import Link from "next/link";
 import { Hero } from "@/components/Hero";
 import { getContent, getPageContent, toRuntimeConfig } from "@/lib/content";
-import { splitParagraphs } from "@/lib/props";
-import { siteConfig } from "@/lib/site";
+import { splitParagraphs, t } from "@/lib/props";
 
-export const metadata: Metadata = {
-  title: "Le Club",
-  description:
-    "Découvrez le Volley Club Perwez : notre histoire depuis 1962, nos valeurs et notre comité.",
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const content = await getContent();
+  return {
+    title: content.ui.nav_club,
+    description: t(toRuntimeConfig(content), "club_meta_description"),
+  };
+}
 
 export default async function ClubPage() {
   const content = await getContent();
@@ -22,9 +23,9 @@ export default async function ClubPage() {
     <>
       <Hero
         runtime={runtime}
-        title="Le"
-        highlight="Club"
-        subtitle={`Fondé en ${runtime.founded}, le VCP est un club de volley dynamique, familial et ambitieux à Perwez.`}
+        title={t(runtime, "club_hero_titre")}
+        highlight={t(runtime, "club_hero_highlight")}
+        subtitle={t(runtime, "club_hero_sous_titre")}
       />
 
       <section className="py-16 sm:py-20">
@@ -32,10 +33,10 @@ export default async function ClubPage() {
           <div className="grid gap-12 lg:grid-cols-2">
             <div>
               <p className="text-sm font-semibold uppercase tracking-wider text-vcp-blue">
-                {clubPage?.title ?? "Qui sommes-nous ?"}
+                {clubPage?.title ?? t(runtime, "nav_club")}
               </p>
               <h2 className="font-display mt-1 text-2xl font-extrabold uppercase tracking-tight text-vcp-red">
-                Plus de 60 ans de volley à Perwez
+                {t(runtime, "club_section_histoire_titre")}
               </h2>
               <div className="mt-6 space-y-4 text-base leading-relaxed text-gray-600">
                 {paragraphs.map((paragraph) => (
@@ -47,7 +48,7 @@ export default async function ClubPage() {
             <div className="flex items-center justify-center">
               <Image
                 src="/logo.png"
-                alt={`Logo ${siteConfig.name}`}
+                alt={`Logo ${runtime.ui.site_name}`}
                 width={400}
                 height={400}
                 className="max-w-sm drop-shadow-lg"
@@ -60,26 +61,13 @@ export default async function ClubPage() {
       <section className="bg-gray-50 py-16 sm:py-20">
         <div className="mx-auto max-w-6xl px-4 sm:px-6">
           <p className="text-sm font-semibold uppercase tracking-wider text-vcp-blue">
-            Nos valeurs
+            {t(runtime, "club_valeurs_eyebrow")}
           </p>
           <h2 className="font-display mt-1 text-2xl font-extrabold uppercase tracking-tight text-vcp-red">
-            Esprit d&apos;équipe &amp; plaisir du jeu
+            {t(runtime, "club_valeurs_titre")}
           </h2>
           <div className="mt-10 grid gap-6 sm:grid-cols-3">
-            {[
-              {
-                title: "Dynamique",
-                text: "Des entraînements variés, des matchs engagés et une vie de club riche en événements.",
-              },
-              {
-                title: "Familial",
-                text: "Un accueil chaleureux pour tous les âges, des jeunes aux vétérans, joueurs et supporters.",
-              },
-              {
-                title: "Ambitieux",
-                text: "La progression de chaque joueur et le rayonnement du club au niveau provincial.",
-              },
-            ].map((value) => (
+            {content.values.map((value) => (
               <div
                 key={value.title}
                 className="rounded-2xl border border-gray-100 bg-white p-6 shadow-sm"
@@ -99,10 +87,10 @@ export default async function ClubPage() {
       <section className="py-16 sm:py-20">
         <div className="mx-auto max-w-6xl px-4 sm:px-6">
           <p className="text-sm font-semibold uppercase tracking-wider text-vcp-blue">
-            Saison 2025-2026
+            {t(runtime, "saison_courante")}
           </p>
           <h2 className="font-display mt-1 text-2xl font-extrabold uppercase tracking-tight text-vcp-red">
-            Membres du comité
+            {t(runtime, "club_comite_titre")}
           </h2>
           <div className="mt-10 grid gap-6 sm:grid-cols-3">
             {content.committee.map((member) => (
@@ -145,11 +133,10 @@ export default async function ClubPage() {
       <section className="bg-vcp-red py-16 sm:py-20">
         <div className="mx-auto max-w-6xl px-4 text-center sm:px-6">
           <h2 className="font-display text-2xl font-extrabold uppercase tracking-tight text-white">
-            Galerie photos
+            {t(runtime, "club_galerie_titre")}
           </h2>
           <p className="mx-auto mt-4 max-w-xl text-sm text-white/70">
-            Les photos du club seront bientôt disponibles ici. En attendant,
-            suivez-nous sur nos réseaux sociaux.
+            {t(runtime, "club_galerie_texte")}
           </p>
           <div className="mt-8 flex justify-center gap-4">
             <a
@@ -158,7 +145,7 @@ export default async function ClubPage() {
               rel="noopener noreferrer"
               className="rounded-full bg-white/10 px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-vcp-blue"
             >
-              Facebook
+              {t(runtime, "label_facebook")}
             </a>
             <a
               href={runtime.social.instagram}
@@ -166,7 +153,7 @@ export default async function ClubPage() {
               rel="noopener noreferrer"
               className="rounded-full bg-white/10 px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-vcp-blue"
             >
-              Instagram
+              {t(runtime, "label_instagram")}
             </a>
           </div>
           <div className="mt-10 grid grid-cols-2 gap-3 sm:grid-cols-4">
@@ -186,7 +173,7 @@ export default async function ClubPage() {
             href="/equipes"
             className="inline-flex rounded-full bg-vcp-red px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-vcp-red-dark"
           >
-            Découvrir nos équipes
+            {t(runtime, "cta_equipes")}
           </Link>
         </div>
       </section>

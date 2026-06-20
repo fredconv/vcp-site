@@ -1,5 +1,6 @@
 import { cache } from "react";
 import { defaultContent } from "./defaults";
+import { NAV_ROUTES, buildUi } from "./ui-defaults";
 import {
   fetchAllSheetTabs,
   isPublished,
@@ -42,6 +43,12 @@ function buildContentFromSheets(
   }
   if (configMap.equipes_intro) base.teamsIntro = configMap.equipes_intro;
 
+  base.ui = buildUi(configMap);
+  base.nav = NAV_ROUTES.map((item) => ({
+    href: item.href,
+    label: base.ui[item.key] ?? item.key,
+  }));
+
   const news = (tabs.actualites ?? [])
     .filter(isPublished)
     .map((row) => ({
@@ -72,7 +79,7 @@ function buildContentFromSheets(
     const team = {
       name: row.nom ?? row.name ?? "",
       division: row.division ?? "",
-      coach: row.entraineur ?? row.coach ?? "À confirmer",
+      coach: row.entraineur ?? row.coach ?? base.ui.label_entraineur,
       training: row.horaire ?? row.entrainement ?? row.training ?? "À confirmer",
       description: row.description ?? "",
     };
@@ -138,6 +145,35 @@ function buildContentFromSheets(
     .filter((item) => item.slug && item.content);
   if (pages.length) base.pages = pages;
 
+  const values = (tabs.valeurs ?? [])
+    .filter(isPublished)
+    .map((row) => ({
+      title: row.titre ?? row.title ?? "",
+      text: row.description ?? row.texte ?? row.contenu ?? "",
+    }))
+    .filter((item) => item.title && item.text);
+  if (values.length) base.values = values;
+
+  const steps = (tabs.etapes ?? [])
+    .filter(isPublished)
+    .map((row) => ({
+      title: row.titre ?? row.title ?? "",
+      text: row.description ?? row.texte ?? row.contenu ?? "",
+    }))
+    .filter((item) => item.title && item.text);
+  if (steps.length) base.steps = steps;
+
+  const quickLinks = (tabs.liens_rapides ?? [])
+    .filter(isPublished)
+    .map((row) => ({
+      order: row.ordre ?? row.order ?? "",
+      label: row.titre ?? row.label ?? row.nom ?? "",
+      description: row.description ?? row.extrait ?? "",
+      href: row.url ?? row.lien ?? row.href ?? "",
+    }))
+    .filter((item) => item.label && item.href);
+  if (quickLinks.length) base.quickLinks = quickLinks;
+
   return base;
 }
 
@@ -164,11 +200,19 @@ export function getPageContent(
 }
 
 export function toRuntimeConfig(content: SiteContent) {
+  const teamCount =
+    content.teams.femmes.length + content.teams.mixtes.length;
+
   return {
     contact: content.config.contact,
     social: content.config.social,
     links: content.config.links,
     founded: content.config.founded,
     description: content.config.description,
+    ui: content.ui,
+    nav: content.nav,
+    teamCount,
   };
 }
+
+export type SiteRuntimeConfig = ReturnType<typeof toRuntimeConfig>;

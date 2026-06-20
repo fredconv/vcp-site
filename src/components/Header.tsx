@@ -1,12 +1,11 @@
 import Image from "next/image";
 import Link from "next/link";
-import { navLinks } from "@/lib/site";
 import type { HeaderFooterProps } from "@/lib/props";
-import { siteConfig } from "@/lib/site";
+import { t } from "@/lib/props";
 
 export function Header({ runtime }: HeaderFooterProps) {
   const externalLinks = [
-    { href: runtime.links.boutique, label: "Boutique", external: true },
+    { href: runtime.links.boutique, label: t(runtime, "label_boutique"), external: true },
   ] as const;
 
   return (
@@ -17,7 +16,7 @@ export function Header({ runtime }: HeaderFooterProps) {
             <div className="absolute -inset-1 rounded-full bg-vcp-red/30 blur-sm transition group-hover:bg-vcp-red/50" />
             <Image
               src="/logo.png"
-              alt={`Logo ${siteConfig.name}`}
+              alt={`Logo ${runtime.ui.site_name}`}
               width={44}
               height={44}
               className="relative h-10 w-10 rounded-full object-cover sm:h-11 sm:w-11"
@@ -26,10 +25,10 @@ export function Header({ runtime }: HeaderFooterProps) {
           </div>
           <div className="hidden min-w-0 sm:block">
             <p className="font-display text-xs font-bold uppercase leading-tight tracking-[0.15em] text-white/70">
-              Volley Club
+              {runtime.ui.hero_ligne1} {runtime.ui.hero_ligne2}
             </p>
             <p className="font-display text-xl font-extrabold uppercase leading-tight tracking-wide text-vcp-red">
-              Perwez
+              {runtime.ui.hero_highlight}
             </p>
           </div>
         </Link>
@@ -38,7 +37,7 @@ export function Header({ runtime }: HeaderFooterProps) {
           className="hidden items-center gap-0.5 lg:flex"
           aria-label="Navigation principale"
         >
-          <NavItems externalLinks={externalLinks} />
+          <NavItems nav={runtime.nav} externalLinks={externalLinks} />
         </nav>
 
         <Link
@@ -47,7 +46,7 @@ export function Header({ runtime }: HeaderFooterProps) {
           rel="noopener noreferrer"
           className="hidden rounded-full bg-vcp-red px-5 py-2 text-xs font-bold uppercase tracking-wider text-white shadow-md transition-all hover:bg-vcp-red-dark hover:shadow-lg lg:inline-flex"
         >
-          Rejoindre
+          {t(runtime, "cta_rejoindre_short")}
         </Link>
 
         <MobileNav runtime={runtime} externalLinks={externalLinks} />
@@ -60,15 +59,17 @@ export function Header({ runtime }: HeaderFooterProps) {
 type NavLink = { href: string; label: string; external?: boolean };
 
 function NavItems({
+  nav,
   externalLinks,
   onNavigate,
 }: {
+  nav: HeaderFooterProps["runtime"]["nav"];
   externalLinks: readonly NavLink[];
   onNavigate?: () => void;
 }) {
   return (
     <>
-      {navLinks.map((link) => (
+      {nav.map((link) => (
         <Link
           key={link.href}
           href={link.href}
@@ -110,7 +111,7 @@ function MobileNav({
         className="absolute right-0 top-full mt-2 w-56 rounded-2xl border border-white/10 bg-vcp-dark py-2 shadow-2xl"
         aria-label="Navigation mobile"
       >
-        <NavItems externalLinks={externalLinks} />
+        <NavItems nav={runtime.nav} externalLinks={externalLinks} />
         <div className="mt-2 border-t border-white/10 px-3 pt-3">
           <Link
             href={runtime.links.inscription}
@@ -118,7 +119,7 @@ function MobileNav({
             rel="noopener noreferrer"
             className="block rounded-full bg-vcp-red py-2.5 text-center text-sm font-bold uppercase text-white"
           >
-            Rejoindre le club
+            {t(runtime, "cta_rejoindre")}
           </Link>
         </div>
       </nav>

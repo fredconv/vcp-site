@@ -1,4 +1,7 @@
 import type { SiteContent } from "./types";
+import { NAV_ROUTES, buildUi, defaultUi } from "./ui-defaults";
+
+const ui = buildUi({});
 
 export const defaultContent: SiteContent = {
   config: {
@@ -31,6 +34,11 @@ export const defaultContent: SiteContent = {
         "https://spond.com/client/sponds/ACFC1E6567694D898E986A372CF705BC",
     },
   },
+  ui,
+  nav: NAV_ROUTES.map((item) => ({
+    href: item.href,
+    label: ui[item.key] ?? defaultUi[item.key] ?? item.key,
+  })),
   news: [
     {
       id: "saison-2025",
@@ -160,7 +168,61 @@ export const defaultContent: SiteContent = {
       slug: "club",
       title: "Qui sommes-nous",
       content:
-        "Le Volley Club Perwez a été créé en 1962. Depuis plus de six décennies, notre association fait vivre le volleyball dans la région de Perwez, en Brabant wallon.\n\nNotre club vous propose la pratique du volleyball pour tous de 7 à 77 ans. Les possibilités d'évolution et les diverses formules d'entraînements en font un club dynamique, familial et ambitieux.\n\nQue vous soyez débutant, joueur confirmé, parent à la recherche d'une activité pour votre enfant ou sponsor potentiel — vous êtes les bienvenus au VCP.",
+        "Le Volley Club Perwez a été créé en 1962. Depuis plus de 60 ans, notre association fait vivre le volleyball dans la région de Perwez, en Brabant wallon.\n\nNotre club vous propose la pratique du volleyball pour tous de 7 à 77 ans. Les possibilités d'évolution et les diverses formules d'entraînements en font un club dynamique, familial et ambitieux.\n\nQue vous soyez débutant, joueur confirmé, parent à la recherche d'une activité pour votre enfant ou sponsor potentiel — vous êtes les bienvenus au VCP.",
+    },
+  ],
+  values: [
+    {
+      title: "Dynamique",
+      text: "Des entraînements variés, des matchs engagés et une vie de club riche en événements.",
+    },
+    {
+      title: "Familial",
+      text: "Un accueil chaleureux pour tous les âges, des jeunes aux vétérans, joueurs et supporters.",
+    },
+    {
+      title: "Ambitieux",
+      text: "La progression de chaque joueur et le rayonnement du club au niveau provincial.",
+    },
+  ],
+  steps: [
+    {
+      title: "Remplir le formulaire",
+      text: "Complétez le formulaire d'inscription en ligne avec vos coordonnées et vos préférences.",
+    },
+    {
+      title: "Confirmation du club",
+      text: "Le comité vous recontacte pour confirmer votre place et vous orienter vers la bonne équipe.",
+    },
+    {
+      title: "Premier entraînement",
+      text: "Rendez-vous au Centre Sportif de Perwez pour votre premier entraînement — bienvenue au VCP !",
+    },
+  ],
+  quickLinks: [
+    {
+      order: "01",
+      label: "Équipes",
+      description: "11 équipes — jeunes, provinciales et loisirs",
+      href: "/equipes",
+    },
+    {
+      order: "02",
+      label: "Activités",
+      description: "Familles, beach-volley, stages ADEPS",
+      href: "/activites",
+    },
+    {
+      order: "03",
+      label: "Le Club",
+      description: "Histoire, valeurs et comité depuis 1962",
+      href: "/club",
+    },
+    {
+      order: "04",
+      label: "Inscriptions",
+      description: "Rejoignez le VCP en quelques clics",
+      href: "/inscriptions",
     },
   ],
 };

@@ -3,7 +3,6 @@ import { Inter, Barlow_Condensed } from "next/font/google";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { getContent, toRuntimeConfig } from "@/lib/content";
-import { siteConfig } from "@/lib/site";
 import "./globals.css";
 
 const inter = Inter({
@@ -17,26 +16,31 @@ const barlow = Barlow_Condensed({
   weight: ["600", "700", "800"],
 });
 
-export const metadata: Metadata = {
-  title: {
-    default: `${siteConfig.name} — Volley à Perwez`,
-    template: `%s | ${siteConfig.name}`,
-  },
-  description: siteConfig.description,
-  keywords: [
-    "Volley Club Perwez",
-    "volley Perwez",
-    "club de volley Brabant wallon",
-    "volleyball Perwez",
-    "VCP",
-  ],
-  openGraph: {
-    title: siteConfig.name,
-    description: siteConfig.description,
-    locale: siteConfig.locale,
-    type: "website",
-  },
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const content = await getContent();
+  const ui = content.ui;
+
+  return {
+    title: {
+      default: `${ui.site_name} — ${ui.meta_title_suffix}`,
+      template: `%s | ${ui.site_name}`,
+    },
+    description: content.config.description,
+    keywords: [
+      ui.site_name,
+      "volley Perwez",
+      "club de volley Brabant wallon",
+      "volleyball Perwez",
+      ui.site_short_name,
+    ],
+    openGraph: {
+      title: ui.site_name,
+      description: content.config.description,
+      locale: "fr-BE",
+      type: "website",
+    },
+  };
+}
 
 export default async function RootLayout({
   children,

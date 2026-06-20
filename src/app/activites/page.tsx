@@ -2,12 +2,15 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Hero } from "@/components/Hero";
 import { getContent, toRuntimeConfig } from "@/lib/content";
+import { t } from "@/lib/props";
 
-export const metadata: Metadata = {
-  title: "Activités",
-  description:
-    "Activités du Volley Club Perwez : journée des familles, beach-volley, stages ADEPS et événements tout au long de la saison.",
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const content = await getContent();
+  return {
+    title: content.ui.nav_activites,
+    description: t(toRuntimeConfig(content), "activites_meta_description"),
+  };
+}
 
 export default async function ActivitesPage() {
   const content = await getContent();
@@ -17,18 +20,18 @@ export default async function ActivitesPage() {
     <>
       <Hero
         runtime={runtime}
-        title="Activités"
-        highlight="du club"
-        subtitle="Soupers, beach-volley, stages… Plein d'activités tout au long de la saison !"
+        title={t(runtime, "activites_hero_titre")}
+        highlight={t(runtime, "activites_hero_highlight")}
+        subtitle={t(runtime, "activites_hero_sous_titre")}
       />
 
       <section className="py-16 sm:py-20">
         <div className="mx-auto max-w-6xl px-4 sm:px-6">
           <p className="text-sm font-semibold uppercase tracking-wider text-vcp-blue">
-            Saison 2025-2026
+            {t(runtime, "saison_courante")}
           </p>
           <h2 className="font-display mt-1 text-2xl font-extrabold uppercase tracking-tight text-vcp-red">
-            Prochains événements
+            {t(runtime, "activites_section_titre")}
           </h2>
 
           <div className="mt-10 space-y-6">
@@ -50,7 +53,7 @@ export default async function ActivitesPage() {
                     </p>
                     {activity.time && (
                       <p className="mt-2 text-sm text-gray-500">
-                        Horaire : {activity.time}
+                        {t(runtime, "label_horaire")} {activity.time}
                       </p>
                     )}
                     <p className="mt-2 text-sm text-gray-500">
@@ -64,7 +67,7 @@ export default async function ActivitesPage() {
                       rel="noopener noreferrer"
                       className="shrink-0 rounded-full bg-vcp-red px-5 py-2.5 text-center text-sm font-semibold text-white transition-colors hover:bg-vcp-red-dark"
                     >
-                      S&apos;inscrire
+                      {t(runtime, "cta_inscrire")}
                     </Link>
                   )}
                 </div>
@@ -73,9 +76,9 @@ export default async function ActivitesPage() {
           </div>
 
           <p className="mt-10 text-center text-sm text-gray-500">
-            Pour plus de renseignements,{" "}
+            {t(runtime, "texte_contact_footer")}{" "}
             <Link href="/contact" className="font-semibold text-vcp-red hover:underline">
-              contactez-nous
+              {t(runtime, "cta_contactez_nous")}
             </Link>
             .
           </p>
@@ -85,7 +88,7 @@ export default async function ActivitesPage() {
       <section className="bg-vcp-red py-16 sm:py-20">
         <div className="mx-auto max-w-3xl px-4 text-center sm:px-6">
           <h2 className="font-display text-2xl font-extrabold uppercase tracking-tight text-white">
-            Lieu d&apos;entraînement
+            {t(runtime, "activites_lieu_titre")}
           </h2>
           <p className="mt-4 text-base text-white/80">
             {runtime.contact.address.name}

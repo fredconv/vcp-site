@@ -56,6 +56,28 @@ export type PageBlock = {
   content: string;
 };
 
+export type ValueItem = {
+  title: string;
+  text: string;
+};
+
+export type StepItem = {
+  title: string;
+  text: string;
+};
+
+export type QuickLinkItem = {
+  order: string;
+  label: string;
+  description: string;
+  href: string;
+};
+
+export type NavItem = {
+  href: string;
+  label: string;
+};
+
 export type SiteContact = {
   email: string;
   presidentEmail: string;
@@ -87,6 +109,8 @@ export type SiteContent = {
       journeeFamilles: string;
     };
   };
+  ui: Record<string, string>;
+  nav: NavItem[];
   news: NewsItem[];
   events: EventItem[];
   teamsIntro: string;
@@ -99,4 +123,7 @@ export type SiteContent = {
   committee: CommitteeMember[];
   stats: StatItem[];
   pages: PageBlock[];
+  values: ValueItem[];
+  steps: StepItem[];
+  quickLinks: QuickLinkItem[];
 };

@@ -1,6 +1,6 @@
 import Link from "next/link";
-import { navLinks, siteConfig } from "@/lib/site";
 import type { HeaderFooterProps } from "@/lib/props";
+import { t } from "@/lib/props";
 
 function FacebookIcon() {
   return (
@@ -21,7 +21,7 @@ function InstagramIcon() {
 export function Footer({ runtime }: HeaderFooterProps) {
   const year = new Date().getFullYear();
   const externalLinks = [
-    { href: runtime.links.boutique, label: "Boutique" },
+    { href: runtime.links.boutique, label: t(runtime, "label_boutique") },
   ] as const;
 
   return (
@@ -31,15 +31,14 @@ export function Footer({ runtime }: HeaderFooterProps) {
         <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
           <div>
             <p className="font-display text-2xl font-extrabold uppercase tracking-wide">
-              <span className="text-white">Volley </span>
-              <span className="text-vcp-red">Club</span>
+              <span className="text-white">{runtime.ui.hero_ligne1} </span>
+              <span className="text-vcp-red">{runtime.ui.hero_ligne2}</span>
             </p>
             <p className="font-display text-lg font-bold uppercase text-vcp-gold">
-              Perwez
+              {runtime.ui.hero_highlight}
             </p>
             <p className="mt-4 text-sm leading-relaxed text-white/60">
-              Club de volley à Perwez depuis {runtime.founded}. Dynamique,
-              familial et ambitieux — de 7 à 77 ans.
+              {t(runtime, "footer_blurb")}
             </p>
             <div className="mt-5 flex gap-3">
               <a
@@ -47,7 +46,7 @@ export function Footer({ runtime }: HeaderFooterProps) {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex h-11 w-11 items-center justify-center rounded-full bg-vcp-red text-white transition-colors hover:bg-vcp-red-dark"
-                aria-label="Facebook"
+                aria-label={t(runtime, "label_facebook")}
               >
                 <FacebookIcon />
               </a>
@@ -56,7 +55,7 @@ export function Footer({ runtime }: HeaderFooterProps) {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex h-11 w-11 items-center justify-center rounded-full bg-vcp-blue text-white transition-colors hover:bg-vcp-blue-dark"
-                aria-label="Instagram"
+                aria-label={t(runtime, "label_instagram")}
               >
                 <InstagramIcon />
               </a>
@@ -65,10 +64,10 @@ export function Footer({ runtime }: HeaderFooterProps) {
 
           <div>
             <h3 className="text-xs font-bold uppercase tracking-[0.2em] text-vcp-gold">
-              Navigation
+              {t(runtime, "home_quick_eyebrow")}
             </h3>
             <ul className="mt-4 space-y-2.5">
-              {navLinks.map((link) => (
+              {runtime.nav.map((link) => (
                 <li key={link.href}>
                   <Link
                     href={link.href}
@@ -95,7 +94,7 @@ export function Footer({ runtime }: HeaderFooterProps) {
 
           <div>
             <h3 className="text-xs font-bold uppercase tracking-[0.2em] text-vcp-gold">
-              Contact
+              {t(runtime, "nav_contact")}
             </h3>
             <ul className="mt-4 space-y-2.5 text-sm text-white/60">
               <li>
@@ -124,10 +123,10 @@ export function Footer({ runtime }: HeaderFooterProps) {
 
           <div>
             <h3 className="text-xs font-bold uppercase tracking-[0.2em] text-vcp-gold">
-              Rejoindre
+              {t(runtime, "cta_rejoindre_short")}
             </h3>
             <p className="mt-4 text-sm leading-relaxed text-white/60">
-              Envie de jouer ? Inscrivez-vous en ligne ou contactez le club.
+              {t(runtime, "footer_rejoindre_texte")}
             </p>
             <Link
               href={runtime.links.inscription}
@@ -135,20 +134,20 @@ export function Footer({ runtime }: HeaderFooterProps) {
               rel="noopener noreferrer"
               className="mt-5 inline-flex rounded-full bg-vcp-red px-5 py-2.5 text-xs font-bold uppercase tracking-wider text-white transition-colors hover:bg-vcp-red-dark"
             >
-              S&apos;inscrire
+              {t(runtime, "cta_inscrire")}
             </Link>
           </div>
         </div>
 
         <div className="mt-12 flex flex-col items-center justify-between gap-4 border-t border-white/10 pt-8 sm:flex-row">
           <p className="text-xs text-white/40">
-            © {year} {siteConfig.name}. Tous droits réservés.
+            © {year} {runtime.ui.site_name}. {t(runtime, "footer_copyright")}
           </p>
           <Link
             href="/contact"
             className="text-xs font-semibold text-vcp-gold hover:text-white"
           >
-            Devenir sponsor →
+            {t(runtime, "cta_sponsor")} →
           </Link>
         </div>
       </div>

@@ -1,17 +1,28 @@
-import type { SiteRuntimeConfig } from "@/lib/site";
-import type { EventItem, NewsItem, SponsorItem } from "@/lib/types";
+import type { SiteRuntimeConfig } from "@/lib/content";
+import { uiText } from "@/lib/ui-defaults";
 
 export type HeaderFooterProps = {
   runtime: SiteRuntimeConfig;
 };
 
-export type SectionsProps = {
-  news: NewsItem[];
-  events: EventItem[];
+export type NewsSectionProps = {
+  runtime: SiteRuntimeConfig;
+  news: import("@/lib/types").NewsItem[];
+};
+
+export type EventsSectionProps = {
+  runtime: SiteRuntimeConfig;
+  events: import("@/lib/types").EventItem[];
 };
 
 export type SponsorBannerProps = {
-  sponsors: SponsorItem[];
+  runtime: SiteRuntimeConfig;
+  sponsors: import("@/lib/types").SponsorItem[];
+};
+
+export type HomeSectionsProps = {
+  runtime: SiteRuntimeConfig;
+  quickLinks: import("@/lib/types").QuickLinkItem[];
 };
 
 export function splitParagraphs(text: string): string[] {
@@ -19,4 +30,18 @@ export function splitParagraphs(text: string): string[] {
     .split(/\n{2,}/)
     .map((p) => p.trim())
     .filter(Boolean);
+}
+
+export function textVars(runtime: SiteRuntimeConfig) {
+  return {
+    founded: runtime.founded,
+    age_range: runtime.ui.age_range,
+    site_name: runtime.ui.site_name,
+    email: runtime.contact.email,
+    team_count: runtime.teamCount,
+  };
+}
+
+export function t(runtime: SiteRuntimeConfig, key: string) {
+  return uiText(runtime.ui, key, textVars(runtime));
 }

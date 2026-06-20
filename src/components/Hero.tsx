@@ -1,8 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui";
-import type { SiteRuntimeConfig } from "@/lib/site";
-import { siteConfig } from "@/lib/site";
+import type { SiteRuntimeConfig } from "@/lib/content";
+import { t } from "@/lib/props";
 
 type HeroRuntimeProps = {
   runtime: SiteRuntimeConfig;
@@ -15,14 +15,14 @@ export function HomeHero({ runtime }: HeroRuntimeProps) {
         <div className="relative flex flex-col justify-center px-4 py-16 sm:px-6 sm:py-20 lg:py-28">
           <div className="absolute -left-20 top-0 h-full w-1/2 bg-vcp-red/10 blur-3xl" />
           <p className="relative text-xs font-bold uppercase tracking-[0.25em] text-vcp-gold">
-            Brabant wallon · Depuis {runtime.founded}
+            {t(runtime, "hero_eyebrow")}
           </p>
           <h1 className="relative font-display mt-4 text-5xl font-extrabold uppercase leading-[0.9] tracking-tight text-white sm:text-6xl lg:text-7xl">
-            Volley
+            {runtime.ui.hero_ligne1}
             <br />
-            Club
+            {runtime.ui.hero_ligne2}
             <br />
-            <span className="text-vcp-red">Perwez</span>
+            <span className="text-vcp-red">{runtime.ui.hero_highlight}</span>
           </h1>
           <p className="relative mt-6 max-w-md text-base leading-relaxed text-white/70 sm:text-lg">
             {runtime.description}
@@ -33,10 +33,10 @@ export function HomeHero({ runtime }: HeroRuntimeProps) {
               variant="primary"
               external
             >
-              Rejoindre le club
+              {t(runtime, "cta_rejoindre")}
             </Button>
             <Button href="/club" variant="ghost">
-              Découvrir
+              {t(runtime, "cta_decouvrir")}
             </Button>
           </div>
         </div>
@@ -51,7 +51,7 @@ export function HomeHero({ runtime }: HeroRuntimeProps) {
             <div className="absolute -inset-8 rounded-full bg-vcp-blue/20 blur-2xl" />
             <Image
               src="/logo.png"
-              alt={`Logo ${siteConfig.name}`}
+              alt={`Logo ${runtime.ui.site_name}`}
               width={360}
               height={360}
               className="relative max-w-[280px] drop-shadow-2xl sm:max-w-xs lg:max-w-sm"
@@ -90,7 +90,7 @@ export function Hero({ runtime, title, highlight, subtitle, cta }: HeroProps) {
       />
       <div className="relative mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-20">
         <p className="text-xs font-bold uppercase tracking-[0.2em] text-vcp-gold">
-          {siteConfig.shortName}
+          {runtime.ui.site_short_name}
         </p>
         <h1 className="font-display mt-3 max-w-2xl text-4xl font-extrabold uppercase leading-none tracking-tight text-white sm:text-5xl">
           {title}
@@ -132,13 +132,12 @@ export function CTASection({ runtime }: HeroRuntimeProps) {
       <div className="absolute inset-0 pattern-court opacity-50" aria-hidden />
       <div className="relative mx-auto flex max-w-6xl flex-col items-center gap-6 px-4 py-16 text-center sm:px-6 sm:py-20">
         <h2 className="font-display text-3xl font-extrabold uppercase leading-none tracking-tight text-white sm:text-4xl">
-          Envie de jouer
+          {t(runtime, "home_cta_titre1")}
           <br />
-          <span className="text-vcp-gold">au volley ?</span>
+          <span className="text-vcp-gold">{t(runtime, "home_cta_titre2")}</span>
         </h2>
         <p className="max-w-lg text-base text-white/85">
-          Rejoignez le {siteConfig.name} — de 7 à 77 ans, tous les niveaux
-          bienvenus.
+          {t(runtime, "home_cta_texte")}
         </p>
         <div className="flex flex-wrap justify-center gap-4">
           <Button
@@ -147,10 +146,10 @@ export function CTASection({ runtime }: HeroRuntimeProps) {
             external
             className="!bg-white !text-vcp-red hover:!bg-vcp-cream"
           >
-            S&apos;inscrire
+            {t(runtime, "cta_inscrire")}
           </Button>
           <Button href="/contact" variant="ghost">
-            Nous contacter
+            {t(runtime, "cta_contact")}
           </Button>
         </div>
       </div>

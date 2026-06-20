@@ -17,10 +17,10 @@ export default async function HomePage() {
       <HomeHero runtime={runtime} />
       <StatBar stats={content.stats} />
       <AboutPreview runtime={runtime} />
-      <EventsSection events={content.events} />
-      <QuickLinks />
-      <NewsSection news={content.news} />
-      <SponsorBanner sponsors={content.sponsors} />
+      <EventsSection runtime={runtime} events={content.events} />
+      <QuickLinks runtime={runtime} quickLinks={content.quickLinks} />
+      <NewsSection runtime={runtime} news={content.news} />
+      <SponsorBanner runtime={runtime} sponsors={content.sponsors} />
       <CTASection runtime={runtime} />
     </>
   );

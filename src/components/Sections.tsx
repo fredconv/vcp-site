@@ -1,15 +1,16 @@
 import Link from "next/link";
 import { SectionHeader } from "@/components/ui";
-import type { SectionsProps } from "@/lib/props";
+import type { EventsSectionProps, NewsSectionProps } from "@/lib/props";
+import { t } from "@/lib/props";
 
-export function NewsSection({ news }: Pick<SectionsProps, "news">) {
+export function NewsSection({ runtime, news }: NewsSectionProps) {
   return (
     <section className="py-16 sm:py-24">
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
         <SectionHeader
-          eyebrow="L'actu, en bref"
-          title="Dernières"
-          highlight="actualités"
+          eyebrow={t(runtime, "home_news_eyebrow")}
+          title={t(runtime, "home_news_titre")}
+          highlight={t(runtime, "home_news_highlight")}
         />
 
         <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
@@ -41,15 +42,15 @@ export function NewsSection({ news }: Pick<SectionsProps, "news">) {
   );
 }
 
-export function EventsSection({ events }: Pick<SectionsProps, "events">) {
+export function EventsSection({ runtime, events }: EventsSectionProps) {
   return (
     <section className="relative bg-white py-16 sm:py-24">
       <div className="absolute left-0 top-0 h-2 w-full bg-vcp-red" aria-hidden />
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
         <SectionHeader
-          eyebrow="Réservez vos dates"
-          title="Prochains"
-          highlight="événements"
+          eyebrow={t(runtime, "home_events_eyebrow")}
+          title={t(runtime, "home_events_titre")}
+          highlight={t(runtime, "home_events_highlight")}
         />
 
         <div className="mt-10 space-y-4">
@@ -79,12 +80,12 @@ export function EventsSection({ events }: Pick<SectionsProps, "events">) {
         </div>
 
         <p className="mt-8 text-center text-sm text-vcp-dark/50">
-          Pour plus de renseignements,{" "}
+          {t(runtime, "texte_contact_footer")}{" "}
           <Link
             href="/contact"
             className="font-bold text-vcp-red hover:underline"
           >
-            contactez-nous
+            {t(runtime, "cta_contactez_nous")}
           </Link>
           .
         </p>

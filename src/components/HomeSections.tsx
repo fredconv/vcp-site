@@ -1,15 +1,9 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Button, SectionHeader } from "@/components/ui";
-import type { SponsorBannerProps } from "@/lib/props";
-import type { SiteRuntimeConfig } from "@/lib/site";
-
-const quickLinks = [
-  { href: "/equipes", num: "01", label: "Équipes", description: "11 équipes — jeunes, provinciales et loisirs" },
-  { href: "/activites", num: "02", label: "Activités", description: "Familles, beach-volley, stages ADEPS" },
-  { href: "/club", num: "03", label: "Le Club", description: "Histoire, valeurs et comité depuis 1962" },
-  { href: "/inscriptions", num: "04", label: "Inscriptions", description: "Rejoignez le VCP en quelques clics" },
-] as const;
+import type { HomeSectionsProps, SponsorBannerProps } from "@/lib/props";
+import { t } from "@/lib/props";
+import type { SiteRuntimeConfig } from "@/lib/content";
 
 type AboutPreviewProps = {
   runtime: SiteRuntimeConfig;
@@ -23,7 +17,7 @@ export function AboutPreview({ runtime }: AboutPreviewProps) {
           <div className="absolute -inset-4 rounded-3xl bg-vcp-red/10" />
           <Image
             src="/logo.png"
-            alt="Logo Volley Club Perwez"
+            alt={`Logo ${runtime.ui.site_name}`}
             width={320}
             height={320}
             className="relative max-w-xs drop-shadow-xl sm:max-w-sm"
@@ -31,19 +25,19 @@ export function AboutPreview({ runtime }: AboutPreviewProps) {
         </div>
         <div>
           <SectionHeader
-            eyebrow={`Depuis ${runtime.founded}`}
-            title="Plus qu'un club,"
-            highlight="une famille"
+            eyebrow={t(runtime, "home_about_eyebrow")}
+            title={t(runtime, "home_about_titre")}
+            highlight={t(runtime, "home_about_highlight")}
           />
           <p className="mt-6 text-base leading-relaxed text-vcp-dark/80">
             {runtime.description}
           </p>
           <div className="mt-8 flex flex-wrap gap-4">
             <Button href="/club" variant="primary">
-              En savoir plus
+              {t(runtime, "cta_en_savoir_plus")}
             </Button>
             <Button href={runtime.social.facebook} variant="outline" external>
-              Facebook
+              {t(runtime, "label_facebook")}
             </Button>
           </div>
         </div>
@@ -52,14 +46,14 @@ export function AboutPreview({ runtime }: AboutPreviewProps) {
   );
 }
 
-export function QuickLinks() {
+export function QuickLinks({ runtime, quickLinks }: HomeSectionsProps) {
   return (
     <section className="bg-vcp-dark py-16 sm:py-24">
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
         <SectionHeader
-          eyebrow="Navigation"
-          title="Besoin d'"
-          highlight="informations ?"
+          eyebrow={t(runtime, "home_quick_eyebrow")}
+          title={t(runtime, "home_quick_titre")}
+          highlight={t(runtime, "home_quick_highlight")}
           align="center"
           light
         />
@@ -68,18 +62,18 @@ export function QuickLinks() {
             <Link
               key={link.href}
               href={link.href}
-              data-num={link.num}
+              data-num={link.order}
               className="card-watermark card-lift group rounded-2xl bg-white p-6"
             >
               <span className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-vcp-red/10 text-sm font-bold text-vcp-red">
-                {link.num}
+                {link.order}
               </span>
               <h3 className="font-display mt-4 text-lg font-extrabold uppercase text-vcp-dark group-hover:text-vcp-red">
                 {link.label}
               </h3>
               <p className="mt-2 text-sm text-vcp-dark/60">{link.description}</p>
               <span className="mt-4 inline-block text-xs font-bold uppercase tracking-wider text-vcp-blue group-hover:text-vcp-red">
-                Explorer →
+                {t(runtime, "cta_explorer")}
               </span>
             </Link>
           ))}
@@ -89,14 +83,14 @@ export function QuickLinks() {
   );
 }
 
-export function SponsorBanner({ sponsors }: SponsorBannerProps) {
+export function SponsorBanner({ runtime, sponsors }: SponsorBannerProps) {
   return (
     <section className="border-y border-vcp-dark/5 bg-white py-14">
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
         <SectionHeader
-          eyebrow="Partenaires"
-          title="Ils nous"
-          highlight="soutiennent"
+          eyebrow={t(runtime, "home_sponsors_eyebrow")}
+          title={t(runtime, "home_sponsors_titre")}
+          highlight={t(runtime, "home_sponsors_highlight")}
           align="center"
         />
         <div className="mt-10 flex flex-wrap items-center justify-center gap-6">
@@ -125,9 +119,9 @@ export function SponsorBanner({ sponsors }: SponsorBannerProps) {
           ))}
         </div>
         <p className="mt-8 text-center text-sm text-vcp-dark/60">
-          Vous souhaitez soutenir le club ?{" "}
+          {t(runtime, "home_sponsors_texte")}{" "}
           <Link href="/contact" className="font-bold text-vcp-red hover:underline">
-            Devenez sponsor
+            {t(runtime, "cta_sponsor")}
           </Link>
         </p>
       </div>

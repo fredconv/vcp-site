@@ -2,15 +2,19 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Hero } from "@/components/Hero";
 import { getContent, toRuntimeConfig } from "@/lib/content";
+import { t } from "@/lib/props";
+import type { SiteRuntimeConfig } from "@/lib/content";
 import type { TeamItem } from "@/lib/types";
 
-export const metadata: Metadata = {
-  title: "Équipes",
-  description:
-    "Découvrez les équipes du Volley Club Perwez : équipes dames, hommes et jeunes en championnat provincial.",
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const content = await getContent();
+  return {
+    title: content.ui.nav_equipes,
+    description: t(toRuntimeConfig(content), "equipes_meta_description"),
+  };
+}
 
-function TeamCard({ team }: { team: TeamItem }) {
+function TeamCard({ runtime, team }: { runtime: SiteRuntimeConfig; team: TeamItem }) {
   return (
     <article className="card-lift flex flex-col rounded-2xl border border-vcp-dark/5 bg-white p-6">
       <div className="flex items-start justify-between gap-3">
@@ -26,11 +30,11 @@ function TeamCard({ team }: { team: TeamItem }) {
       </p>
       <dl className="mt-5 space-y-2 border-t border-vcp-dark/5 pt-4 text-sm">
         <div className="flex justify-between gap-4">
-          <dt className="font-medium text-vcp-dark/40">Entraîneur</dt>
+          <dt className="font-medium text-vcp-dark/40">{t(runtime, "label_entraineur")}</dt>
           <dd className="font-semibold text-vcp-dark">{team.coach}</dd>
         </div>
         <div className="flex justify-between gap-4">
-          <dt className="font-medium text-vcp-dark/40">Entraînements</dt>
+          <dt className="font-medium text-vcp-dark/40">{t(runtime, "label_entrainements")}</dt>
           <dd className="text-right font-bold text-vcp-blue">{team.training}</dd>
         </div>
       </dl>
@@ -39,10 +43,12 @@ function TeamCard({ team }: { team: TeamItem }) {
 }
 
 function TeamSection({
+  runtime,
   title,
   subtitle,
   teamList,
 }: {
+  runtime: SiteRuntimeConfig;
   title: string;
   subtitle: string;
   teamList: TeamItem[];
@@ -55,7 +61,7 @@ function TeamSection({
       <p className="mt-2 text-sm text-gray-500">{subtitle}</p>
       <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {teamList.map((team) => (
-          <TeamCard key={team.name} team={team} />
+          <TeamCard key={team.name} runtime={runtime} team={team} />
         ))}
       </div>
     </div>
@@ -70,9 +76,9 @@ export default async function EquipesPage() {
     <>
       <Hero
         runtime={runtime}
-        title="Nos"
-        highlight="équipes"
-        subtitle="Équipes dames, hommes et jeunes — du loisir à la compétition provinciale."
+        title={t(runtime, "equipes_hero_titre")}
+        highlight={t(runtime, "equipes_hero_highlight")}
+        subtitle={t(runtime, "equipes_hero_sous_titre")}
       />
 
       <section className="py-16 sm:py-20">
@@ -81,13 +87,15 @@ export default async function EquipesPage() {
             {content.teamsIntro}
           </p>
           <TeamSection
-            title="Équipes femmes"
-            subtitle="Nos équipes dames évoluent en championnat provincial."
+            runtime={runtime}
+            title={t(runtime, "equipes_section_femmes_titre")}
+            subtitle={t(runtime, "equipes_section_femmes_sous_titre")}
             teamList={content.teams.femmes}
           />
           <TeamSection
-            title="Équipes mixtes & loisirs"
-            subtitle="Formules loisir accessibles à tous."
+            runtime={runtime}
+            title={t(runtime, "equipes_section_mixtes_titre")}
+            subtitle={t(runtime, "equipes_section_mixtes_sous_titre")}
             teamList={content.teams.mixtes}
           />
         </div>
@@ -96,12 +104,10 @@ export default async function EquipesPage() {
       <section className="bg-gray-50 py-16 sm:py-20">
         <div className="mx-auto max-w-3xl px-4 text-center sm:px-6">
           <h2 className="font-display text-2xl font-extrabold uppercase tracking-tight text-vcp-red">
-            Envie de rejoindre une équipe ?
+            {t(runtime, "equipes_cta_titre")}
           </h2>
           <p className="mt-4 text-base text-gray-600">
-            Les horaires et divisions peuvent évoluer chaque saison. Pour
-            connaître les places disponibles, contactez le club ou remplissez le
-            formulaire d&apos;inscription.
+            {t(runtime, "equipes_cta_texte")}
           </p>
           <div className="mt-8 flex flex-wrap justify-center gap-4">
             <Link
@@ -110,13 +116,13 @@ export default async function EquipesPage() {
               rel="noopener noreferrer"
               className="rounded-full bg-vcp-red px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-vcp-red-dark"
             >
-              S&apos;inscrire en ligne
+              {t(runtime, "cta_inscrire_ligne")}
             </Link>
             <Link
               href="/contact"
               className="rounded-full border-2 border-vcp-blue px-6 py-3 text-sm font-semibold text-vcp-blue transition-colors hover:bg-vcp-blue hover:text-white"
             >
-              Nous contacter
+              {t(runtime, "cta_contact")}
             </Link>
           </div>
         </div>

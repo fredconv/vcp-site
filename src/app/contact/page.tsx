@@ -3,12 +3,15 @@ import Link from "next/link";
 import { ContactForm } from "@/components/ContactForm";
 import { Hero } from "@/components/Hero";
 import { getContent, toRuntimeConfig } from "@/lib/content";
+import { t } from "@/lib/props";
 
-export const metadata: Metadata = {
-  title: "Contact",
-  description:
-    "Contactez le Volley Club Perwez : coordonnées, formulaire, adresse de la salle et réseaux sociaux.",
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const content = await getContent();
+  return {
+    title: content.ui.nav_contact,
+    description: t(toRuntimeConfig(content), "contact_meta_description"),
+  };
+}
 
 export default async function ContactPage() {
   const content = await getContent();
@@ -20,9 +23,9 @@ export default async function ContactPage() {
     <>
       <Hero
         runtime={runtime}
-        title="Nous"
-        highlight="contacter"
-        subtitle="Une question, une inscription ou une proposition de sponsoring ? Écrivez-nous."
+        title={t(runtime, "contact_hero_titre")}
+        highlight={t(runtime, "contact_hero_highlight")}
+        subtitle={t(runtime, "contact_hero_sous_titre")}
       />
 
       <section className="py-16 sm:py-20">
@@ -30,24 +33,16 @@ export default async function ContactPage() {
           <div className="grid gap-12 lg:grid-cols-2">
             <div>
               <h2 className="font-display text-2xl font-extrabold uppercase tracking-tight text-vcp-red">
-                Coordonnées
+                {t(runtime, "contact_coord_titre")}
               </h2>
               <p className="mt-4 text-sm leading-relaxed text-gray-600">
-                Pour nous contacter, remplissez le formulaire ci-contre ou
-                envoyez-nous un email à{" "}
-                <a
-                  href={`mailto:${contact.email}`}
-                  className="font-semibold text-vcp-red hover:underline"
-                >
-                  {contact.email}
-                </a>
-                .
+                {t(runtime, "contact_coord_texte")}
               </p>
 
               <dl className="mt-8 space-y-6">
                 <div>
                   <dt className="text-xs font-semibold uppercase tracking-wider text-gray-400">
-                    Email général
+                    {t(runtime, "label_email_general")}
                   </dt>
                   <dd className="mt-1">
                     <a
@@ -61,7 +56,7 @@ export default async function ContactPage() {
                 {president && (
                   <div>
                     <dt className="text-xs font-semibold uppercase tracking-wider text-gray-400">
-                      Président
+                      {t(runtime, "label_president")}
                     </dt>
                     <dd className="mt-1 space-y-1">
                       <p className="font-medium text-gray-800">{president.name}</p>
@@ -82,7 +77,7 @@ export default async function ContactPage() {
                 )}
                 <div>
                   <dt className="text-xs font-semibold uppercase tracking-wider text-gray-400">
-                    Trésorier
+                    {t(runtime, "label_tresorier")}
                   </dt>
                   <dd className="mt-1">
                     <a
@@ -95,7 +90,7 @@ export default async function ContactPage() {
                 </div>
                 <div>
                   <dt className="text-xs font-semibold uppercase tracking-wider text-gray-400">
-                    Salle d&apos;entraînement
+                    {t(runtime, "label_salle")}
                   </dt>
                   <dd className="mt-1 text-sm text-gray-600">
                     <strong>{contact.address.name}</strong>
@@ -111,7 +106,7 @@ export default async function ContactPage() {
 
               <div className="mt-8">
                 <h3 className="font-display text-sm font-bold uppercase tracking-wider text-vcp-blue">
-                  Suivez-nous
+                  {t(runtime, "label_suivez_nous")}
                 </h3>
                 <div className="mt-4 flex gap-3">
                   <a
@@ -120,7 +115,7 @@ export default async function ContactPage() {
                     rel="noopener noreferrer"
                     className="rounded-full bg-vcp-red px-5 py-2 text-sm font-semibold text-white transition-colors hover:bg-vcp-red-dark"
                   >
-                    Facebook
+                    {t(runtime, "label_facebook")}
                   </a>
                   <a
                     href={social.instagram}
@@ -128,7 +123,7 @@ export default async function ContactPage() {
                     rel="noopener noreferrer"
                     className="rounded-full bg-vcp-blue px-5 py-2 text-sm font-semibold text-white transition-colors hover:bg-vcp-blue-dark"
                   >
-                    Instagram
+                    {t(runtime, "label_instagram")}
                   </a>
                 </div>
               </div>
@@ -136,14 +131,13 @@ export default async function ContactPage() {
 
             <div className="rounded-2xl border border-gray-100 bg-white p-6 shadow-sm sm:p-8">
               <h2 className="font-display text-xl font-extrabold uppercase tracking-tight text-vcp-red">
-                Formulaire de contact
+                {t(runtime, "contact_form_titre")}
               </h2>
               <p className="mt-2 text-sm text-gray-500">
-                Remplissez ce formulaire et votre client mail s&apos;ouvrira
-                avec le message pré-rempli.
+                {t(runtime, "contact_form_texte")}
               </p>
               <div className="mt-6">
-                <ContactForm contactEmail={contact.email} />
+                <ContactForm contactEmail={contact.email} runtime={runtime} />
               </div>
             </div>
           </div>
@@ -153,17 +147,16 @@ export default async function ContactPage() {
       <section className="bg-gray-50 py-16 sm:py-20">
         <div className="mx-auto max-w-3xl px-4 text-center sm:px-6">
           <h2 className="font-display text-2xl font-extrabold uppercase tracking-tight text-vcp-red">
-            Inscriptions
+            {t(runtime, "contact_inscriptions_titre")}
           </h2>
           <p className="mt-4 text-base text-gray-600">
-            Pour rejoindre le club, consultez notre page dédiée avec le
-            formulaire en ligne et les étapes à suivre.
+            {t(runtime, "contact_inscriptions_texte")}
           </p>
           <Link
             href="/inscriptions"
             className="mt-8 inline-flex rounded-full bg-vcp-red px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-vcp-red-dark"
           >
-            Page inscriptions
+            {t(runtime, "cta_page_inscriptions")}
           </Link>
         </div>
       </section>

@@ -10,6 +10,9 @@ const SHEET_TABS = [
   "comite",
   "stats",
   "pages",
+  "valeurs",
+  "etapes",
+  "liens_rapides",
 ] as const;
 
 function parseCsvRecords(text: string): string[][] {
