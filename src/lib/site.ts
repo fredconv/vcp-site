@@ -37,4 +37,5 @@ export type SiteRuntimeConfig = {
   social: (typeof defaultContent.config.social);
   links: SiteLinks;
   founded: number;
+  description: string;
 };

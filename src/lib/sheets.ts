@@ -12,38 +12,62 @@ const SHEET_TABS = [
   "pages",
 ] as const;
 
-function parseCsvLine(line: string): string[] {
-  const values: string[] = [];
-  let current = "";
+function parseCsvRecords(text: string): string[][] {
+  const records: string[][] = [];
+  let currentField = "";
+  let currentRecord: string[] = [];
   let inQuotes = false;
+  const input = text.trim();
 
-  for (let i = 0; i < line.length; i++) {
-    const char = line[i];
+  for (let i = 0; i < input.length; i++) {
+    const char = input[i];
+
     if (char === '"') {
-      if (inQuotes && line[i + 1] === '"') {
-        current += '"';
+      if (inQuotes && input[i + 1] === '"') {
+        currentField += '"';
         i++;
       } else {
         inQuotes = !inQuotes;
       }
-    } else if (char === "," && !inQuotes) {
-      values.push(current);
-      current = "";
-    } else {
-      current += char;
+      continue;
+    }
+
+    if (!inQuotes && char === ",") {
+      currentRecord.push(currentField.trim());
+      currentField = "";
+      continue;
+    }
+
+    if (!inQuotes && (char === "\n" || char === "\r")) {
+      if (char === "\r" && input[i + 1] === "\n") i++;
+      currentRecord.push(currentField.trim());
+      if (currentRecord.some((field) => field.length > 0)) {
+        records.push(currentRecord);
+      }
+      currentRecord = [];
+      currentField = "";
+      continue;
+    }
+
+    currentField += char;
+  }
+
+  if (currentField.length > 0 || currentRecord.length > 0) {
+    currentRecord.push(currentField.trim());
+    if (currentRecord.some((field) => field.length > 0)) {
+      records.push(currentRecord);
     }
   }
-  values.push(current);
-  return values.map((v) => v.trim());
+
+  return records;
 }
 
 export function parseCsv(text: string): CsvRow[] {
-  const lines = text.trim().split(/\r?\n/).filter(Boolean);
-  if (lines.length < 2) return [];
+  const records = parseCsvRecords(text);
+  if (records.length < 2) return [];
 
-  const headers = parseCsvLine(lines[0]).map((h) => h.toLowerCase().trim());
-  return lines.slice(1).map((line) => {
-    const values = parseCsvLine(line);
+  const headers = records[0].map((header) => header.toLowerCase().trim());
+  return records.slice(1).map((values) => {
     const row: CsvRow = {};
     headers.forEach((header, index) => {
       row[header] = values[index] ?? "";
@@ -66,7 +90,7 @@ export async function fetchSheetTab(
   tab: string
 ): Promise<CsvRow[]> {
   const response = await fetch(sheetUrl(sheetId, tab), {
-    cache: "force-cache",
+    cache: "no-store",
   });
 
   if (!response.ok) {

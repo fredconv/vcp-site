@@ -36,14 +36,7 @@ export function AboutPreview({ runtime }: AboutPreviewProps) {
             highlight="une famille"
           />
           <p className="mt-6 text-base leading-relaxed text-vcp-dark/80">
-            Notre club vous propose la pratique du volleyball pour tous de{" "}
-            <strong className="text-vcp-red">7 à 77 ans</strong>. Les possibilités
-            d&apos;évolution et les diverses formules d&apos;entraînements en font un
-            club <strong>dynamique, familial et ambitieux</strong>.
-          </p>
-          <p className="mt-4 text-base leading-relaxed text-vcp-dark/70">
-            Basé à Perwez, en Brabant wallon — du loisir à la compétition
-            provinciale.
+            {runtime.description}
           </p>
           <div className="mt-8 flex flex-wrap gap-4">
             <Button href="/club" variant="primary">

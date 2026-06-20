@@ -69,24 +69,24 @@ Mettez `TRUE` pour afficher une ligne, `FALSE` pour la masquer sans la supprimer
 
 ### Onglet `config` (2 colonnes : `cle` | `valeur`)
 
-| cle | valeur |
-|-----|--------|
-| founded | 1962 |
-| description | Club de volley à Perwez... |
-| email | info@volleyclubperwez.be |
-| president_email | volleyclubperwez@gmail.com |
-| tresorier_email | tresorier@volleyclubperwez.be |
-| phone | 0475 35 47 26 |
-| address_name | Centre Sportif de Perwez |
-| address_street | Rue des Marronniers, 17 |
-| address_city | Perwez |
-| address_zip | 1360 |
-| facebook | https://www.facebook.com/VCPerwez |
-| instagram | https://www.instagram.com/volley_club_perwez/ |
-| lien_inscription | https://forms.gle/wqnAdXCRZSxbozqM8 |
-| lien_boutique | https://www.volleyclubperwez.be/boutique/fr/ |
-| lien_journee_familles | https://spond.com/client/sponds/... |
-| equipes_intro | Texte d'introduction page équipes... |
+| cle | valeur | Où ça s'affiche |
+|-----|--------|-----------------|
+| founded | 1962 | Hero, stats, page Club |
+| description | Club de volley à Perwez... | **Accueil** (hero + section « Plus qu'un club ») |
+| email | info@volleyclubperwez.be | Contact, footer |
+| president_email | volleyclubperwez@gmail.com | Contact |
+| tresorier_email | tresorier@volleyclubperwez.be | Contact |
+| phone | 0475 35 47 26 | Contact, footer |
+| address_name | Centre Sportif de Perwez | Contact |
+| address_street | Rue des Marronniers, 17 | Contact |
+| address_city | Perwez | Contact |
+| address_zip | 1360 | Contact |
+| facebook | https://www.facebook.com/VCPerwez | Liens sociaux |
+| instagram | https://www.instagram.com/volley_club_perwez/ | Liens sociaux |
+| lien_inscription | https://forms.gle/... | Boutons inscription |
+| lien_boutique | https://www.volleyclubperwez.be/boutique/fr/ | Menu |
+| lien_journee_familles | https://spond.com/... | Activités |
+| equipes_intro | Texte d'introduction... | Pages **Équipes** et **Inscriptions** |
 
 ---
 
@@ -172,10 +172,14 @@ Mettez `TRUE` pour afficher une ligne, `FALSE` pour la masquer sans la supprimer
 Après chaque modification du Sheet :
 
 1. Vérifiez que les lignes ont `publie = TRUE`
-2. Allez sur **Vercel** → votre projet → **Deployments**
-3. Cliquez sur **⋯** du dernier déploiement → **Redeploy**
+2. **Ouvrez le lien « Redeploy site »** (fourni par le développeur — à mettre en favori)
+3. Attendez 2–5 min, puis rechargez le site
 
-Le site sera reconstruit avec les nouvelles données (2–5 min).
+> Le lien déclenche un rebuild Vercel. **Ne le partagez pas publiquement** (pas sur Facebook, pas sur le site web).
+
+### Alternative (accès Vercel)
+
+Vercel → **Deployments** → **⋯** → **Redeploy**
 
 ---
 
@@ -200,12 +204,12 @@ Le site sera reconstruit avec les nouvelles données (2–5 min).
 
 ## Qui peut éditer ?
 
-| Rôle | Accès Sheet | Accès Vercel |
-|------|-------------|--------------|
-| Président / gestionnaire | **Éditeur** | Non requis |
-| Développeur | Propriétaire | Admin (pour redeploy) |
+| Rôle | Accès Sheet | Mettre le site à jour |
+|------|-------------|------------------------|
+| Président / gestionnaire | **Éditeur** | Lien « Redeploy site » (favori) |
+| Développeur | Propriétaire | Lien redeploy ou dashboard Vercel |
 
-Le comité n'a besoin que du Google Sheet. Le redeploy peut être fait par le dev ou automatisé plus tard (niveau 2).
+Le comité édite le Sheet, puis ouvre le lien redeploy. Pas besoin de compte Vercel.
 
 ---
 

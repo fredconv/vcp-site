@@ -25,7 +25,7 @@ export function HomeHero({ runtime }: HeroRuntimeProps) {
             <span className="text-vcp-red">Perwez</span>
           </h1>
           <p className="relative mt-6 max-w-md text-base leading-relaxed text-white/70 sm:text-lg">
-            Volleyball pour tous de 7 à 77 ans — dynamique, familial et ambitieux.
+            {runtime.description}
           </p>
           <div className="relative mt-8 flex flex-wrap gap-4">
             <Button

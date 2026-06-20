@@ -169,5 +169,6 @@ export function toRuntimeConfig(content: SiteContent) {
     social: content.config.social,
     links: content.config.links,
     founded: content.config.founded,
+    description: content.config.description,
   };
 }
