@@ -13,13 +13,6 @@ export type NewsItem = {
   category: string;
 };
 
-export type EventItem = {
-  id: string;
-  title: string;
-  date: string;
-  description: string;
-};
-
 export type TeamItem = {
   name: string;
   division: string;
@@ -131,7 +124,6 @@ export type SiteContent = {
   ui: Record<string, string>;
   nav: NavItem[];
   news: NewsItem[];
-  events: EventItem[];
   teamsIntro: string;
   teams: {
     femmes: TeamItem[];

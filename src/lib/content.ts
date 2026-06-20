@@ -144,17 +144,6 @@ function buildContentFromSheets(
     .filter((item) => item.title);
   if (news.length) base.news = news;
 
-  const events = (tabs.evenements ?? [])
-    .filter(isPublished)
-    .map((row) => ({
-      id: row.id || slugify(row.titre ?? "evenement"),
-      title: row.titre ?? "",
-      date: row.date ?? "",
-      description: row.description ?? row.extrait ?? "",
-    }))
-    .filter((item) => item.title);
-  if (events.length) base.events = events;
-
   const femmes: SiteContent["teams"]["femmes"] = [];
   const mixtes: SiteContent["teams"]["mixtes"] = [];
   for (const row of (tabs.equipes ?? []).filter(isPublished)) {
@@ -183,7 +172,8 @@ function buildContentFromSheets(
     .filter(isPublished)
     .map((row) => ({
       name: row.nom ?? row.name ?? "",
-      logoUrl: row.logo_url || row.logo || undefined,
+      logoUrl:
+        resolveImageUrl(row.logo_url ?? row.logo ?? "") ?? undefined,
       url: (row.lien ?? row.url) || undefined,
       tier: parseSponsorTier(row.niveau ?? row.tier ?? "silver"),
     }))

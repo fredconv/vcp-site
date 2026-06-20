@@ -19,7 +19,7 @@ Fichier Google Sheets **séparé** du CMS principal, pour les textes détaillés
 
 - **slug** : identique à la colonne `slug` de l'onglet `activites` du Sheet principal
 - **contenu** : texte libre, paragraphes séparés par une **ligne vide**
-- **hero_image** : lien photo bannière (voir `docs/HERO-IMAGES.md`) — vide = hero texte
+- **hero_image** : URL directe de l’image ou lien Drive (voir `docs/HERO-IMAGES.md`) — vide = hero texte
 - **publie** : `TRUE` pour afficher la page et le lien sur le site
 
 ## Lier au site

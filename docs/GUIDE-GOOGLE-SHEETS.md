@@ -24,7 +24,6 @@ Ce guide explique comment modifier le contenu du site **sans coder**, via un Goo
 config
 menu
 actualites
-evenements
 equipes
 activites
 sponsors
@@ -135,16 +134,6 @@ Le bouton rouge **Rejoindre** reste géré par `cta_rejoindre_short` et `lien_in
 
 ---
 
-### Onglet `evenements`
-
-> **Obsolète** — l'accueil et le site utilisent l'onglet **`activites`**. Vous pouvez supprimer cet onglet ou l'ignorer.
-
-| id | titre | date | description | publie |
-|----|-------|------|-------------|--------|
-| familles-2026 | Journée des familles | 17 mai 2026 | Une journée conviviale... | TRUE |
-
----
-
 ### Onglet `activites`
 
 | id | slug | titre | date_debut | date_fin | texte_date | horaire | lieu | description | lien_inscription | publie |
@@ -179,7 +168,7 @@ Le bouton rouge **Rejoindre** reste géré par `cta_rejoindre_short` et `lien_in
 | Mon Sponsor | https://drive.google.com/... | https://... | gold | TRUE |
 
 **niveau** : `gold`, `silver` ou `bronze`  
-**logo_url** : lien public Google Drive vers l'image (clic droit → obtenir le lien)
+**logo_url** : URL **directe** de l’image (`https://…`) ou lien Google Drive partagé en lecteur
 
 ---
 
@@ -230,11 +219,17 @@ Vercel → **Deployments** → **⋯** → **Redeploy**
 
 ---
 
-## Photos (Google Drive)
+## Photos (logos, bannières)
+
+**Option 1 — URL directe :** si l’image est déjà hébergée (site du club, autre serveur), copiez l’adresse complète `https://…` dans `logo_url`, `*_hero_image` ou `hero_image`.
+
+**Option 2 — Google Drive :**
 
 1. Uploadez l'image dans un dossier Drive partagé
-2. Clic droit → **Partager** → accès public ou « Toute personne avec le lien »
-3. Copiez le lien dans la colonne `logo_url` du Sheet
+2. Clic droit → **Partager** → « Toute personne avec le lien » en **Lecteur**
+3. Collez le lien dans le Sheet
+
+Les liens de posts Facebook/Instagram ne fonctionnent en général pas ; prévoir une URL d’image directe ou Drive. Galerie réseaux sociaux : évolution possible ultérieurement.
 
 ---
 

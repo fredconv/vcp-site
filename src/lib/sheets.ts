@@ -3,7 +3,6 @@ type CsvRow = Record<string, string>;
 const SHEET_TABS = [
   "config",
   "actualites",
-  "evenements",
   "equipes",
   "activites",
   "sponsors",

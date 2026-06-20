@@ -58,8 +58,6 @@ Un Google Sheet peut contenir plusieurs **onglets** (feuilles en bas de l’écr
 | **etapes** | Étapes numérotées | Page Inscriptions (« comment s’inscrire ») |
 | **liens_rapides** | Cartes de raccourci | Accueil — « Besoin d’informations ? » |
 
-> L’onglet **evenements** n’est **plus utilisé** : tout passe par **activites**.
-
 ---
 
 ## Règle d’or : la colonne `publie`
@@ -99,7 +97,7 @@ Il existe aussi beaucoup de lignes **`nav_…`**, **`cta_…`**, **`club_…`**,
 Lignes du type **`club_hero_image`**, **`activites_hero_image`**, etc. :
 
 - **Cellule vide** → bandeau texte habituel (fond sombre)
-- **Lien vers une photo** (Google Drive partagé) → grande photo en haut de la page
+- **Lien vers une photo** (URL complète `https://…` ou lien Google Drive partagé) → grande photo en haut de la page
 
 Voir la section [Photos plus bas](#ajouter-une-photo-logo-sponsor-ou-bannière).
 
@@ -193,7 +191,7 @@ Sans fiche (ou `publie = FALSE`), l’événement reste visible sur la liste mai
 | nom | logo_url | lien | niveau | publie |
 
 - **niveau** : `gold`, `silver` ou `bronze` (taille d’affichage)
-- **logo_url** : lien public vers l’image sur Drive
+- **logo_url** : adresse **directe** de l’image (`https://…`) ou lien Google Drive partagé
 
 ### `comite`
 
@@ -278,17 +276,42 @@ Cartes cliquables vers une page du site (ex. `/equipes`).
 
 ## Ajouter une photo (logo sponsor ou bannière)
 
+Deux méthodes possibles — le site accepte toute **URL complète** qui pointe vers une image (`https://…`).
+
+### Option A — Image déjà hébergée ailleurs (le plus simple)
+
+Si la photo est déjà en ligne (site du club, hébergeur, CDN, etc.) :
+
+1. Ouvrez l’image dans le navigateur (ou faites clic droit → **Copier l’adresse de l’image**)
+2. Collez l’**URL complète** dans le Sheet :
+   - Sponsor → colonne **logo_url**
+   - Bannière de page → ligne `club_hero_image`, etc. dans **config**
+   - Fiche événement → colonne **hero_image**
+3. Mise en ligne (lien redeploy)
+
+L’adresse doit se terminer souvent par `.jpg`, `.png`, `.webp`… ou être un lien direct affichant uniquement l’image.
+
+> **Facebook / Instagram :** le lien d’une **publication** ne fonctionne en général **pas** (ce n’est pas une adresse d’image). Il faut l’URL directe du fichier image, ou utiliser Google Drive (option B).  
+> *À l’avenir, une galerie liée aux albums Facebook ou Instagram pourra simplifier ce choix — pas encore disponible.*
+
+### Option B — Google Drive (dossier VCP-site)
+
 1. Déposez l’image dans le dossier [VCP-site sur Drive](https://drive.google.com/drive/folders/1HGBTbGphfkrarboCuQg25yS5uPM95-ws)
 2. Clic droit sur le fichier → **Partager**
 3. Accès : **Toute personne disposant du lien** → rôle **Lecteur**
 4. Copiez le lien (format `https://drive.google.com/file/d/…/view`)
-5. Collez-le dans le Sheet :
-   - Sponsor → colonne **logo_url**
-   - Bannière de page → ligne `club_hero_image`, etc. dans **config**
-   - Fiche événement → colonne **hero_image**
+5. Collez-le dans le Sheet (mêmes colonnes que ci-dessus)
 6. Mise en ligne
 
-Si l’image ne s’affiche pas : vérifiez le partage public (lecteur).
+Le site convertit automatiquement les liens Drive.
+
+### Si l’image ne s’affiche pas
+
+| Cause | Solution |
+|-------|----------|
+| Lien Drive non public | Partager en **Lecteur** pour tout le monde avec le lien |
+| Lien vers une page web (pas l’image) | Utiliser l’**URL directe** de l’image |
+| Lien Facebook / Instagram (post) | Télécharger la photo ou la mettre sur Drive / hébergeur |
 
 ---
 
@@ -300,7 +323,7 @@ Si l’image ne s’affiche pas : vérifiez le partage public (lecteur).
 | Encore l’ancien texte dans le navigateur | Cache du navigateur | `Ctrl + F5` ou navigation privée |
 | Une ligne n’apparaît pas | `publie` = `FALSE` ou cellule vide | Mettre `TRUE`, vérifier titre rempli |
 | Lien « Voir l'événement » absent | Pas de fiche ou slug différent | Même **slug** dans `activites` et `fiches`, `publie` = `TRUE` |
-| Photo invisible | Drive pas partagé en lecture | Partager le fichier en « Lecteur » pour tout le monde avec le lien |
+| Photo invisible | Mauvais type de lien ou Drive non public | URL **directe** de l’image, ou Drive en « Lecteur » |
 | Onglet ignoré | Mauvais nom d’onglet | Noms en **minuscules**, sans faute : `activites`, pas `Activités` |
 
 ---

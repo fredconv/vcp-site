@@ -73,29 +73,6 @@ export const defaultContent: SiteContent = {
       category: "Événements",
     },
   ],
-  events: [
-    {
-      id: "familles-2026",
-      title: "Journée des familles",
-      date: "17 mai 2026",
-      description:
-        "Une journée conviviale pour découvrir le club, rencontrer les équipes et partager un moment en famille.",
-    },
-    {
-      id: "beach-2026",
-      title: "Week-end beach-volley",
-      date: "25 & 26 juillet 2026",
-      description:
-        "Le traditionnel week-end beach-volley du VCP — soleil, sable et bonne humeur garantis !",
-    },
-    {
-      id: "adeps-2026",
-      title: "Week-end volley ADEPS Loverval",
-      date: "4 au 6 septembre 2026",
-      description:
-        "Stage et week-end volley au centre ADEPS de Loverval. Réservez vos dates !",
-    },
-  ],
   teamsIntro:
     "Le Volley Club Perwez s'agrandit de saisons en saisons. Des nouvelles têtes arrivent, des plus anciennes reviennent. Nous sommes désormais un club gros de 11 équipes ! Nous aimerions redémarrer une section masculine — au moins en jeunes, voire en P4H selon les demandes. Nous recherchons également des personnes pour encadrer les équipes (entraîneur, arbitre, animateur).",
   teams: {

@@ -1,6 +1,6 @@
 # Importer les CSV dans Google Sheets
 
-Dossier : `docs/sheets-import/` — **12 fichiers CSV** (9 onglets existants + 3 nouveaux + textes UI optionnels).
+Dossier : `docs/sheets-import/` — fichiers CSV par onglet (+ `config-textes.csv` optionnel, Sheet 2 séparé pour les fiches).
 
 ## Étape 1 — Créer le classeur
 
@@ -27,7 +27,7 @@ Dossier : `docs/sheets-import/` — **12 fichiers CSV** (9 onglets existants + 3
 | Fichier CSV   | Nom de l'onglet à créer |
 |---------------|-------------------------|
 | actualites.csv  | actualites  |
-| evenements.csv  | evenements  |
+| menu.csv        | menu        |
 | equipes.csv     | equipes     |
 | activites.csv   | activites   |
 | sponsors.csv    | sponsors    |
@@ -71,7 +71,7 @@ En local : créez `.env.local` avec la même variable.
 
 ## Vérification rapide
 
-- **12 onglets** avec les bons noms
+- Tous les onglets avec les bons noms (sans `evenements` — les événements sont dans `activites`)
 - Ligne 1 = en-têtes (cle, titre, nom…)
 - Colonne `publie` = `TRUE` sur les lignes visibles
 - Onglet `config` : pas de colonne `publie` (normal)
