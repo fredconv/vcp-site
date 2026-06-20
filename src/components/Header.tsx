@@ -1,13 +1,10 @@
 import Image from "next/image";
 import Link from "next/link";
+import { NavItems } from "@/components/NavItems";
 import type { HeaderFooterProps } from "@/lib/props";
 import { t } from "@/lib/props";
 
 export function Header({ runtime }: HeaderFooterProps) {
-  const externalLinks = [
-    { href: runtime.links.boutique, label: t(runtime, "label_boutique"), external: true },
-  ] as const;
-
   return (
     <header className="sticky top-0 z-50 border-b border-white/5 bg-vcp-dark/95 shadow-lg backdrop-blur-md">
       <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-3 sm:px-6">
@@ -37,7 +34,7 @@ export function Header({ runtime }: HeaderFooterProps) {
           className="hidden items-center gap-0.5 lg:flex"
           aria-label="Navigation principale"
         >
-          <NavItems nav={runtime.nav} externalLinks={externalLinks} />
+          <NavItems nav={runtime.nav} />
         </nav>
 
         <Link
@@ -49,56 +46,14 @@ export function Header({ runtime }: HeaderFooterProps) {
           {t(runtime, "cta_rejoindre_short")}
         </Link>
 
-        <MobileNav runtime={runtime} externalLinks={externalLinks} />
+        <MobileNav runtime={runtime} />
       </div>
       <div className="h-0.5 bg-gradient-to-r from-vcp-red via-vcp-gold to-vcp-blue" />
     </header>
   );
 }
 
-type NavLink = { href: string; label: string; external?: boolean };
-
-function NavItems({
-  nav,
-  externalLinks,
-  onNavigate,
-}: {
-  nav: HeaderFooterProps["runtime"]["nav"];
-  externalLinks: readonly NavLink[];
-  onNavigate?: () => void;
-}) {
-  return (
-    <>
-      {nav.map((link) => (
-        <Link
-          key={link.href}
-          href={link.href}
-          onClick={onNavigate}
-          className="rounded-lg px-3 py-2 text-sm font-medium text-white/75 transition-colors hover:bg-white/5 hover:text-vcp-gold"
-        >
-          {link.label}
-        </Link>
-      ))}
-      {externalLinks.map((link) => (
-        <Link
-          key={link.href}
-          href={link.href}
-          target="_blank"
-          rel="noopener noreferrer"
-          onClick={onNavigate}
-          className="rounded-lg px-3 py-2 text-sm font-medium text-white/75 transition-colors hover:bg-white/5 hover:text-vcp-gold"
-        >
-          {link.label}
-        </Link>
-      ))}
-    </>
-  );
-}
-
-function MobileNav({
-  runtime,
-  externalLinks,
-}: HeaderFooterProps & { externalLinks: readonly NavLink[] }) {
+function MobileNav({ runtime }: HeaderFooterProps) {
   return (
     <details className="relative lg:hidden">
       <summary className="flex cursor-pointer list-none items-center justify-center rounded-lg border border-white/15 p-2 text-white transition-colors hover:bg-white/5 [&::-webkit-details-marker]:hidden">
@@ -111,7 +66,7 @@ function MobileNav({
         className="absolute right-0 top-full mt-2 w-56 rounded-2xl border border-white/10 bg-vcp-dark py-2 shadow-2xl"
         aria-label="Navigation mobile"
       >
-        <NavItems nav={runtime.nav} externalLinks={externalLinks} />
+        <NavItems nav={runtime.nav} />
         <div className="mt-2 border-t border-white/10 px-3 pt-3">
           <Link
             href={runtime.links.inscription}

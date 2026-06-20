@@ -35,10 +35,18 @@ export const defaultContent: SiteContent = {
     },
   },
   ui,
-  nav: NAV_ROUTES.map((item) => ({
-    href: item.href,
-    label: ui[item.key] ?? defaultUi[item.key] ?? item.key,
-  })),
+  nav: [
+    ...NAV_ROUTES.map((item) => ({
+      href: item.href,
+      label: ui[item.key] ?? defaultUi[item.key] ?? item.key,
+      external: false,
+    })),
+    {
+      href: "https://www.volleyclubperwez.be/boutique/fr/",
+      label: ui.label_boutique ?? defaultUi.label_boutique,
+      external: true,
+    },
+  ],
   news: [
     {
       id: "saison-2025",

@@ -14,7 +14,57 @@ import {
   rowsToConfigMap,
   slugify,
 } from "./sheets";
-import type { ActivityDetail, SiteContent } from "./types";
+import type { ActivityDetail, NavItem, SiteContent } from "./types";
+
+function parseMenuRows(rows: Record<string, string>[]): NavItem[] {
+  return rows
+    .filter(isPublished)
+    .map((row) => {
+      const href = (row.url ?? row.href ?? row.lien ?? "").trim();
+      const label = (row.label ?? row.libelle ?? row.titre ?? "").trim();
+      const externalFlag = (row.externe ?? row.external ?? "").toUpperCase();
+      const external =
+        externalFlag === "TRUE" ||
+        externalFlag === "1" ||
+        externalFlag === "OUI" ||
+        externalFlag === "YES" ||
+        /^https?:\/\//i.test(href);
+
+      return {
+        order: row.ordre ?? row.order ?? "",
+        href,
+        label,
+        external,
+      };
+    })
+    .filter((item) => item.href && item.label)
+    .sort((a, b) =>
+      a.order.localeCompare(b.order, undefined, { numeric: true })
+    )
+    .map(({ href, label, external }) => ({ href, label, external }));
+}
+
+function buildNav(
+  menuRows: Record<string, string>[],
+  ui: Record<string, string>,
+  boutiqueHref: string
+): NavItem[] {
+  const fromSheet = parseMenuRows(menuRows);
+  if (fromSheet.length) return fromSheet;
+
+  return [
+    ...NAV_ROUTES.map((item) => ({
+      href: item.href,
+      label: ui[item.key] ?? item.key,
+      external: false,
+    })),
+    {
+      href: boutiqueHref,
+      label: ui.label_boutique ?? "Boutique",
+      external: true,
+    },
+  ];
+}
 
 function parseActivityDetails(
   rows: Record<string, string>[]
@@ -76,10 +126,11 @@ function buildContentFromSheets(
   if (configMap.equipes_intro) base.teamsIntro = configMap.equipes_intro;
 
   base.ui = buildUi(configMap);
-  base.nav = NAV_ROUTES.map((item) => ({
-    href: item.href,
-    label: base.ui[item.key] ?? item.key,
-  }));
+  base.nav = buildNav(
+    tabs.menu ?? [],
+    base.ui,
+    base.config.links.boutique
+  );
 
   const news = (tabs.actualites ?? [])
     .filter(isPublished)

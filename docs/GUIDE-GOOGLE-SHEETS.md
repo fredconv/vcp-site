@@ -16,10 +16,11 @@ Ce guide explique comment modifier le contenu du site **sans coder**, via un Goo
 
 1. Allez sur [sheets.google.com](https://sheets.google.com)
 2. Créez un nouveau classeur : **« VCP — Contenu du site »**
-3. Créez **9 onglets** (feuilles en bas) avec ces noms **exactement** :
+3. Créez les onglets (feuilles en bas) avec ces noms **exactement** :
 
 ```
 config
+menu
 actualites
 evenements
 equipes
@@ -28,6 +29,9 @@ sponsors
 comite
 stats
 pages
+valeurs
+etapes
+liens_rapides
 ```
 
 4. **Partage** : Fichier → Partager → « Toute personne disposant du lien » en **Lecteur** minimum  
@@ -96,6 +100,28 @@ Mettez `TRUE` pour afficher une ligne, `FALSE` pour la masquer sans la supprimer
 | contact_hero_image | | **Contact** |
 
 > **Bannières photo** : laissez la cellule vide pour le bandeau texte habituel. Collez un lien d'image pour afficher une bannière photo à la place. Voir [Images hero](HERO-IMAGES.md).
+
+---
+
+### Onglet `menu` (navigation header + footer)
+
+| ordre | label | url | externe | publie |
+|-------|-------|-----|---------|--------|
+| 01 | Accueil | / | FALSE | TRUE |
+| 02 | Le Club | /club | FALSE | TRUE |
+| 07 | Boutique | https://www.volleyclubperwez.be/boutique/fr/ | TRUE | TRUE |
+
+- **ordre** : position dans le menu (01, 02, 03…)
+- **label** : texte affiché
+- **url** : chemin interne (`/club`) ou lien complet (`https://…`)
+- **externe** : `TRUE` pour ouvrir dans un nouvel onglet (auto si l'URL commence par `http`)
+- **publie** : `FALSE` pour masquer une entrée sans la supprimer
+
+Import CSV : `docs/sheets-import/menu.csv`
+
+> Si l'onglet `menu` est vide, le site utilise le menu par défaut (libellés `nav_*` dans `config`).
+
+Le bouton rouge **Rejoindre** reste géré par `cta_rejoindre_short` et `lien_inscription` dans `config`.
 
 ---
 

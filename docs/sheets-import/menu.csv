@@ -1,0 +1,8 @@
+ordre;label;url;externe;publie
+01;Accueil;/;FALSE;TRUE
+02;Le Club;/club;FALSE;TRUE
+03;Équipes;/equipes;FALSE;TRUE
+04;Activités;/activites;FALSE;TRUE
+05;Inscriptions;/inscriptions;FALSE;TRUE
+06;Contact;/contact;FALSE;TRUE
+07;Boutique;https://www.volleyclubperwez.be/boutique/fr/;TRUE;TRUE

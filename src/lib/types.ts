@@ -94,6 +94,7 @@ export type QuickLinkItem = {
 export type NavItem = {
   href: string;
   label: string;
+  external?: boolean;
 };
 
 export type SiteContact = {

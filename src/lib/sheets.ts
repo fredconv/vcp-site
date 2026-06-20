@@ -13,6 +13,7 @@ const SHEET_TABS = [
   "valeurs",
   "etapes",
   "liens_rapides",
+  "menu",
 ] as const;
 
 function parseCsvRecords(text: string): string[][] {

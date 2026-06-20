@@ -20,9 +20,6 @@ function InstagramIcon() {
 
 export function Footer({ runtime }: HeaderFooterProps) {
   const year = new Date().getFullYear();
-  const externalLinks = [
-    { href: runtime.links.boutique, label: t(runtime, "label_boutique") },
-  ] as const;
 
   return (
     <footer className="mt-auto bg-vcp-dark text-white">
@@ -68,21 +65,11 @@ export function Footer({ runtime }: HeaderFooterProps) {
             </h3>
             <ul className="mt-4 space-y-2.5">
               {runtime.nav.map((link) => (
-                <li key={link.href}>
+                <li key={`${link.href}-${link.label}`}>
                   <Link
                     href={link.href}
-                    className="text-sm text-white/60 transition-colors hover:text-white"
-                  >
-                    {link.label}
-                  </Link>
-                </li>
-              ))}
-              {externalLinks.map((link) => (
-                <li key={link.href}>
-                  <Link
-                    href={link.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
+                    target={link.external ? "_blank" : undefined}
+                    rel={link.external ? "noopener noreferrer" : undefined}
                     className="text-sm text-white/60 transition-colors hover:text-white"
                   >
                     {link.label}
