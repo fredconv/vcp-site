@@ -1,6 +1,7 @@
 import { cache } from "react";
 import { defaultContent } from "./defaults";
 import { NAV_ROUTES, buildUi } from "./ui-defaults";
+import { mapActivityFromRow } from "./activity-dates";
 import {
   fetchAllSheetTabs,
   isPublished,
@@ -92,16 +93,8 @@ function buildContentFromSheets(
 
   const activities = (tabs.activites ?? [])
     .filter(isPublished)
-    .map((row) => ({
-      id: row.id || slugify(row.titre ?? "activite"),
-      title: row.titre ?? "",
-      date: row.date ?? "",
-      time: row.horaire || row.heure || undefined,
-      location: row.lieu ?? row.location ?? "",
-      description: row.description ?? "",
-      inscriptionUrl: row.lien_inscription || row.inscription_url || undefined,
-    }))
-    .filter((item) => item.title);
+    .map((row) => mapActivityFromRow(row, slugify))
+    .filter((item): item is NonNullable<typeof item> => item !== null);
   if (activities.length) base.activities = activities;
 
   const sponsors = (tabs.sponsors ?? [])

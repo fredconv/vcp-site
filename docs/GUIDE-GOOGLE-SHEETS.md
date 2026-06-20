@@ -119,9 +119,15 @@ Mettez `TRUE` pour afficher une ligne, `FALSE` pour la masquer sans la supprimer
 
 ### Onglet `activites`
 
-| id | titre | date | horaire | lieu | description | lien_inscription | publie |
-|----|-------|------|---------|------|-------------|------------------|--------|
-| familles-2026 | Journée des familles | 17 mai 2026 | À partir de 10h00 | Centre Sportif de Perwez | ... | https://spond.com/... | TRUE |
+| id | titre | date_debut | date_fin | texte_date | horaire | lieu | description | lien_inscription | publie |
+|----|-------|------------|----------|------------|---------|------|-------------|------------------|--------|
+| familles-2026 | Journée des familles | 17/05/2026 | | 17 mai 2026 | À partir de 10h00 | Centre Sportif de Perwez | ... | https://spond.com/... | TRUE |
+| beach-2026 | Beach-Volley | 25/07/2026 | 26/07/2026 | | | À confirmer | ... | | TRUE |
+
+**Dates**
+- `date_debut` / `date_fin` : sélecteur de date Google Sheets (format JJ/MM/AAAA ou AAAA-MM-JJ)
+- `texte_date` : texte libre affiché à la place (ex. « dernier week-end de septembre »). Si vide → dates formatées automatiquement
+- La page **Activités** sépare automatiquement **à venir** (fin ≥ aujourd'hui) et **terminés** (fin < aujourd'hui, toujours `publie = TRUE`)
 
 ---
 

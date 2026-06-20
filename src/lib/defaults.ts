@@ -111,6 +111,7 @@ export const defaultContent: SiteContent = {
     {
       id: "familles-2026",
       title: "Journée des familles",
+      dateStart: "2026-05-17",
       date: "17 mai 2026",
       time: "À partir de 10h00",
       location: "Centre Sportif de Perwez — Rue des Marronniers, 17, 1360 Perwez",
@@ -121,6 +122,8 @@ export const defaultContent: SiteContent = {
     {
       id: "beach-2026",
       title: "Tournoi de Beach-Volley du VCP",
+      dateStart: "2026-07-25",
+      dateEnd: "2026-07-26",
       date: "25 & 26 juillet 2026",
       location: "À confirmer",
       description: "Le traditionnel week-end beach-volley — soleil, sable et bonne humeur !",
@@ -128,6 +131,9 @@ export const defaultContent: SiteContent = {
     {
       id: "adeps-2026",
       title: "Week-end ADEPS",
+      dateStart: "2026-09-04",
+      dateEnd: "2026-09-06",
+      dateDisplay: "Premier week-end de septembre 2026",
       date: "Premier week-end de septembre 2026",
       location: "Centre ADEPS de Loverval",
       description: "Ouvert à tous les joueurs du club à partir de la U15. Réservez déjà vos dates !",

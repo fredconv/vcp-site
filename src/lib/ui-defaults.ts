@@ -119,6 +119,9 @@ export const defaultUi: Record<string, string> = {
   activites_hero_sous_titre:
     "Soupers, beach-volley, stages… Plein d'activités tout au long de la saison !",
   activites_section_titre: "Prochains événements",
+  activites_section_a_venir: "Événements à venir",
+  activites_section_termines: "Événements terminés",
+  activites_aucun_a_venir: "Aucun événement à venir pour le moment. Revenez bientôt !",
   activites_lieu_titre: "Lieu d'entraînement",
   inscriptions_meta_description:
     "Rejoignez le Volley Club Perwez : informations pratiques et formulaire d'inscription en ligne.",

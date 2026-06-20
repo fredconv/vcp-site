@@ -31,6 +31,13 @@ export type TeamItem = {
 export type ActivityItem = {
   id: string;
   title: string;
+  /** ISO YYYY-MM-DD — pour le tri passé / à venir */
+  dateStart: string;
+  /** ISO YYYY-MM-DD — fin de plage (optionnel) */
+  dateEnd?: string;
+  /** Texte libre affiché à la place des dates (ex. « dernier week-end de septembre ») */
+  dateDisplay?: string;
+  /** Libellé date calculé ou issu du Sheet */
   date: string;
   time?: string;
   location: string;
