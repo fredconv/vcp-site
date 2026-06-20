@@ -110,6 +110,7 @@ export const defaultContent: SiteContent = {
   activities: [
     {
       id: "familles-2026",
+      slug: "journee-familles",
       title: "Journée des familles",
       dateStart: "2026-05-17",
       date: "17 mai 2026",
@@ -118,9 +119,11 @@ export const defaultContent: SiteContent = {
       description: "Une journée conviviale ouverte aux familles du club et aux nouveaux curieux.",
       inscriptionUrl:
         "https://spond.com/client/sponds/ACFC1E6567694D898E986A372CF705BC",
+      hasDetailPage: true,
     },
     {
       id: "beach-2026",
+      slug: "beach-volley",
       title: "Tournoi de Beach-Volley du VCP",
       dateStart: "2026-07-25",
       dateEnd: "2026-07-26",
@@ -130,6 +133,7 @@ export const defaultContent: SiteContent = {
     },
     {
       id: "adeps-2026",
+      slug: "week-end-adeps",
       title: "Week-end ADEPS",
       dateStart: "2026-09-04",
       dateEnd: "2026-09-06",
@@ -137,6 +141,14 @@ export const defaultContent: SiteContent = {
       date: "Premier week-end de septembre 2026",
       location: "Centre ADEPS de Loverval",
       description: "Ouvert à tous les joueurs du club à partir de la U15. Réservez déjà vos dates !",
+    },
+  ],
+  activityDetails: [
+    {
+      slug: "journee-familles",
+      title: "Journée des familles",
+      content:
+        "Une journée conviviale ouverte à toutes les familles du club et aux nouveaux curieux.\n\nAu programme : découverte du volley, rencontres avec les équipes, animations pour les enfants et moment de partage autour d'un verre.\n\nRendez-vous au Centre Sportif de Perwez — inscription recommandée via le lien Spond.",
     },
   ],
   sponsors: [

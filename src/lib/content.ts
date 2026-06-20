@@ -3,7 +3,9 @@ import { defaultContent } from "./defaults";
 import { NAV_ROUTES, buildUi } from "./ui-defaults";
 import { mapActivityFromRow } from "./activity-dates";
 import {
+  ACTIVITY_FICHES_TAB,
   fetchAllSheetTabs,
+  fetchSheetTab,
   isPublished,
   parsePhoneHref,
   parseSponsorTier,
@@ -11,7 +13,31 @@ import {
   rowsToConfigMap,
   slugify,
 } from "./sheets";
-import type { SiteContent } from "./types";
+import type { ActivityDetail, SiteContent } from "./types";
+
+function parseActivityDetails(
+  rows: Record<string, string>[]
+): ActivityDetail[] {
+  return rows
+    .filter(isPublished)
+    .map((row) => ({
+      slug: (row.slug ?? slugify(row.titre ?? "")).trim().toLowerCase(),
+      title: row.titre ?? row.title ?? "",
+      content: row.contenu ?? row.content ?? "",
+    }))
+    .filter((item) => item.slug && item.content);
+}
+
+function applyActivityDetails(
+  content: SiteContent,
+  details: ActivityDetail[]
+): void {
+  content.activityDetails = details;
+  const detailSlugs = new Set(details.map((d) => d.slug));
+  for (const activity of content.activities) {
+    activity.hasDetailPage = detailSlugs.has(activity.slug);
+  }
+}
 
 function buildContentFromSheets(
   tabs: Record<string, Record<string, string>[]>
@@ -179,7 +205,23 @@ export const getContent = cache(async (): Promise<SiteContent> => {
 
   try {
     const tabs = await fetchAllSheetTabs(sheetId);
-    return buildContentFromSheets(tabs);
+    const content = buildContentFromSheets(tabs);
+    const configMap = rowsToConfigMap(tabs.config ?? []);
+    const fichesSheetId = configMap.sheet_fiches_activites?.trim();
+
+    if (fichesSheetId) {
+      try {
+        const fichesRows = await fetchSheetTab(
+          fichesSheetId,
+          ACTIVITY_FICHES_TAB
+        );
+        applyActivityDetails(content, parseActivityDetails(fichesRows));
+      } catch {
+        applyActivityDetails(content, []);
+      }
+    }
+
+    return content;
   } catch {
     return defaultContent;
   }
@@ -190,6 +232,23 @@ export function getPageContent(
   slug: string
 ): SiteContent["pages"][number] | undefined {
   return content.pages.find((page) => page.slug === slug);
+}
+
+export function getActivityBySlug(
+  content: SiteContent,
+  slug: string
+): { activity: SiteContent["activities"][number]; detail: ActivityDetail } | undefined {
+  const normalized = slug.trim().toLowerCase();
+  const detail = content.activityDetails.find((d) => d.slug === normalized);
+  const activity = content.activities.find((a) => a.slug === normalized);
+  if (!detail || !activity) return undefined;
+  return { activity, detail };
+}
+
+export function getActivitiesWithDetailPages(
+  content: SiteContent
+): SiteContent["activities"] {
+  return content.activities.filter((a) => a.hasDetailPage);
 }
 
 export function toRuntimeConfig(content: SiteContent) {

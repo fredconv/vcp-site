@@ -1,4 +1,4 @@
-id;titre;date_debut;date_fin;texte_date;horaire;lieu;description;lien_inscription;publie
-familles-2026;Journée des familles;17/05/2026;;17 mai 2026;À partir de 10h00;Centre Sportif de Perwez — Rue des Marronniers, 17, 1360 Perwez;Une journée conviviale ouverte aux familles du club et aux nouveaux curieux.;https://spond.com/client/sponds/ACFC1E6567694D898E986A372CF705BC;TRUE
-beach-2026;Tournoi de Beach-Volley du VCP;25/07/2026;26/07/2026;;;À confirmer;Le traditionnel week-end beach-volley — soleil, sable et bonne humeur !;;TRUE
-adeps-2026;Week-end ADEPS;04/09/2026;06/09/2026;Premier week-end de septembre 2026;;Centre ADEPS de Loverval;Ouvert à tous les joueurs du club à partir de la U15. Réservez déjà vos dates !;;TRUE
+id;slug;titre;date_debut;date_fin;texte_date;horaire;lieu;description;lien_inscription;publie
+familles-2026;journee-familles;Journée des familles;17/05/2026;;17 mai 2026;À partir de 10h00;Centre Sportif de Perwez — Rue des Marronniers, 17, 1360 Perwez;Une journée conviviale ouverte aux familles du club et aux nouveaux curieux.;https://spond.com/client/sponds/ACFC1E6567694D898E986A372CF705BC;TRUE
+beach-2026;beach-volley;Tournoi de Beach-Volley du VCP;25/07/2026;26/07/2026;;;À confirmer;Le traditionnel week-end beach-volley — soleil, sable et bonne humeur !;;TRUE
+adeps-2026;week-end-adeps;Week-end ADEPS;04/09/2026;06/09/2026;Premier week-end de septembre 2026;;Centre ADEPS de Loverval;Ouvert à tous les joueurs du club à partir de la U15. Réservez déjà vos dates !;;TRUE

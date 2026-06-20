@@ -84,6 +84,8 @@ export function isPublished(row: CsvRow): boolean {
   return value === "TRUE" || value === "1" || value === "OUI" || value === "YES";
 }
 
+export const ACTIVITY_FICHES_TAB = "fiches" as const;
+
 function sheetUrl(sheetId: string, tab: string): string {
   return `https://docs.google.com/spreadsheets/d/${sheetId}/gviz/tq?tqx=out:csv&sheet=${encodeURIComponent(tab)}`;
 }

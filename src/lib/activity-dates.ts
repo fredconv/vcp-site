@@ -166,6 +166,7 @@ export function mapActivityFromRow(
     (dateStart
       ? formatActivityDate({
           id: "",
+          slug: "",
           title,
           dateStart,
           dateEnd: dateEnd || undefined,
@@ -177,6 +178,7 @@ export function mapActivityFromRow(
 
   return {
     id: row.id || slugify(title),
+    slug: (row.slug ?? row.id ?? slugify(title)).trim().toLowerCase(),
     title,
     dateStart: dateStart ?? "",
     dateEnd: dateEnd || undefined,

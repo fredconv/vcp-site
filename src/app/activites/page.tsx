@@ -45,7 +45,16 @@ function ActivityCard({
               past ? "text-gray-600" : "text-vcp-red"
             }`}
           >
-            {activity.title}
+            {activity.hasDetailPage ? (
+              <Link
+                href={`/activites/${activity.slug}`}
+                className="hover:underline"
+              >
+                {activity.title}
+              </Link>
+            ) : (
+              activity.title
+            )}
           </h3>
           <p className="mt-3 text-sm leading-relaxed text-gray-600">
             {activity.description}
@@ -56,17 +65,27 @@ function ActivityCard({
             </p>
           )}
           <p className="mt-2 text-sm text-gray-500">📍 {activity.location}</p>
+          {activity.hasDetailPage && (
+            <Link
+              href={`/activites/${activity.slug}`}
+              className="mt-4 inline-block text-sm font-bold uppercase tracking-wide text-vcp-blue hover:text-vcp-red"
+            >
+              {t(runtime, "cta_voir_evenement")} →
+            </Link>
+          )}
         </div>
+        <div className="flex shrink-0 flex-col gap-3">
         {!past && activity.inscriptionUrl && (
           <Link
             href={activity.inscriptionUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="shrink-0 rounded-full bg-vcp-red px-5 py-2.5 text-center text-sm font-semibold text-white transition-colors hover:bg-vcp-red-dark"
+            className="rounded-full bg-vcp-red px-5 py-2.5 text-center text-sm font-semibold text-white transition-colors hover:bg-vcp-red-dark"
           >
             {t(runtime, "cta_inscrire")}
           </Link>
         )}
+        </div>
       </div>
     </article>
   );

@@ -30,6 +30,8 @@ export type TeamItem = {
 
 export type ActivityItem = {
   id: string;
+  /** Identifiant URL — doit correspondre au slug dans la Sheet 2 fiches */
+  slug: string;
   title: string;
   /** ISO YYYY-MM-DD — pour le tri passé / à venir */
   dateStart: string;
@@ -43,6 +45,14 @@ export type ActivityItem = {
   location: string;
   description: string;
   inscriptionUrl?: string;
+  /** Fiche détaillée disponible dans la Sheet 2 */
+  hasDetailPage?: boolean;
+};
+
+export type ActivityDetail = {
+  slug: string;
+  title: string;
+  content: string;
 };
 
 export type SponsorItem = {
@@ -126,6 +136,7 @@ export type SiteContent = {
     mixtes: TeamItem[];
   };
   activities: ActivityItem[];
+  activityDetails: ActivityDetail[];
   sponsors: SponsorItem[];
   committee: CommitteeMember[];
   stats: StatItem[];

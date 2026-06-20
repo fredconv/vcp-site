@@ -123,6 +123,8 @@ export const defaultUi: Record<string, string> = {
   activites_section_termines: "Événements terminés",
   activites_aucun_a_venir: "Aucun événement à venir pour le moment. Revenez bientôt !",
   activites_lieu_titre: "Lieu d'entraînement",
+  cta_voir_evenement: "Voir l'événement",
+  activites_retour: "← Retour aux activités",
   inscriptions_meta_description:
     "Rejoignez le Volley Club Perwez : informations pratiques et formulaire d'inscription en ligne.",
   inscriptions_hero_titre: "Rejoindre",
