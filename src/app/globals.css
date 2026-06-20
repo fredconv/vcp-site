@@ -1,0 +1,45 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #1a1a2e;
+  --vcp-red: #d51900;
+  --vcp-blue: #333370;
+  --vcp-red-dark: #a81300;
+  --vcp-blue-dark: #252550;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-vcp-red: var(--vcp-red);
+  --color-vcp-blue: var(--vcp-blue);
+  --color-vcp-red-dark: var(--vcp-red-dark);
+  --color-vcp-blue-dark: var(--vcp-blue-dark);
+  --font-sans: var(--font-inter);
+  --font-display: var(--font-barlow);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-inter), system-ui, sans-serif;
+}
+
+.font-display {
+  font-family: var(--font-barlow), system-ui, sans-serif;
+}
+
+/* Subtle diagonal energy pattern for hero sections */
+.pattern-energy {
+  background-image: linear-gradient(
+      135deg,
+      rgba(213, 25, 0, 0.04) 25%,
+      transparent 25%,
+      transparent 50%,
+      rgba(51, 51, 112, 0.04) 50%,
+      rgba(51, 51, 112, 0.04) 75%,
+      transparent 75%
+    );
+  background-size: 24px 24px;
+}
